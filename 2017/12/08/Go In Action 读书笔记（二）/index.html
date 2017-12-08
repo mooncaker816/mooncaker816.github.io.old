@@ -4,15 +4,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Mooncaker816</title>
+  <title>Go In Action 读书笔记（二） | Mooncaker816</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mooncaker816">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="数组 Go中数组是一个长度固定的数据类型，用于存储一段具有相同的类型的元素的连续块。 由于元素类型相同，又是连续分配，是一种高效的数据结构 声明&amp;amp;初始化 12// 声明一个包含 5 个元素的整型数组,此时该数组元素为对应的零值var array [5]int 1234// 字面量声明初始化// 声明一个包含 5 个元素的整型数组// 用具体值初始化每个元素array := [5]int&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go In Action 读书笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2017/12/08/Go In Action 读书笔记（二）/index.html">
 <meta property="og:site_name" content="Mooncaker816">
+<meta property="og:description" content="数组 Go中数组是一个长度固定的数据类型，用于存储一段具有相同的类型的元素的连续块。 由于元素类型相同，又是连续分配，是一种高效的数据结构 声明&amp;amp;初始化 12// 声明一个包含 5 个元素的整型数组,此时该数组元素为对应的零值var array [5]int 1234// 字面量声明初始化// 声明一个包含 5 个元素的整型数组// 用具体值初始化每个元素array := [5]int&amp;#">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-08T10:35:47.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mooncaker816">
+<meta name="twitter:title" content="Go In Action 读书笔记（二）">
+<meta name="twitter:description" content="数组 Go中数组是一个长度固定的数据类型，用于存储一段具有相同的类型的元素的连续块。 由于元素类型相同，又是连续分配，是一种高效的数据结构 声明&amp;amp;初始化 12// 声明一个包含 5 个元素的整型数组,此时该数组元素为对应的零值var array [5]int 1234// 字面量声明初始化// 声明一个包含 5 个元素的整型数组// 用具体值初始化每个元素array := [5]int&amp;#">
   
     <link rel="alternative" href="/atom.xml" title="Mooncaker816" type="application/atom+xml">
   
@@ -64,9 +68,7 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-    <article id="post-Go In Action 读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-Go In Action 读书笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/12/08/Go In Action 读书笔记（二）/" class="article-date">
   <time datetime="2017-12-08T09:00:00.000Z" itemprop="datePublished">2017-12-08</time>
@@ -79,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/Go In Action 读书笔记（二）/">Go In Action 读书笔记（二）</a>
+    <h1 class="article-title" itemprop="name">
+      Go In Action 读书笔记（二）
     </h1>
   
 
@@ -181,169 +183,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Go In Action 读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/25/Go In Action 读书笔记（一）/" class="article-date">
-  <time datetime="2017-09-25T09:00:00.000Z" itemprop="datePublished">2017-09-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/Go In Action 读书笔记（一）/">Go In Action 读书笔记（一）</a>
-    </h1>
+    <a href="/2017/09/25/Go In Action 读书笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Go In Action 读书笔记（一）</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><ul>
-<li>目录即为包</li>
-<li>同一目录下各个.go文件所属包名必须相同</li>
-<li>包名可与目录名不同，但习惯保持一致（main包例外）</li>
-<li>同一项目下，main包，main()函数，必须存在且唯一</li>
-<li>go build编译后的可执行程序名为main包代码所在目录的目录名</li>
-<li><p>导入包，编译器会按GOROOT,GOPATH的顺序搜索包名依次导入，找到即会停止搜索，找不到就报错 </p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"os"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>远程导入，支持直接从github，bitbucket等网站直接导入<br>事实上， 这个导入路径代表一个 URL，指向 GitHub 上的代码库。如果路径包含 URL，可以使用 Go 工具链从 DVCS 获取包，并把包的源代码保存在 GOPATH 指向的路径里与 URL 匹配的目录里。这个获取过程 使用 go get 命令完成。go get 将获取任意指定的 URL 的包，或者一个已经导入的包所依赖的其 他包。由于go get的这种递归特性，这个命令会扫描某个包的源码树，获取能找到的所有依赖包。</p>
-</li>
-</ul>
-<ul>
-<li><p>命名导入，当包名冲突时，可重定义包名以示区别，使用当中只需使用重命名后当包名即可</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">     <span class="string">"fmt"</span></span><br><span class="line">     myfmt <span class="string">"mylib/fmt"</span></span><br><span class="line"> )</span><br></pre></td></tr></table></figure>
-<p>当重命名名称为下划线时,导入的包只执行init初始化函数，如为数据库注册驱动</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">     <span class="string">"database/sql"</span></span><br><span class="line">   _ <span class="string">"github.com/goinaction/code/chapter3/dbdriver/postgres"</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"> sql.Open(<span class="string">"postgres"</span>, <span class="string">"mydb"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入的包必须被使用到，否则编译会报错</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/09/25/Go In Action 读书笔记（一）/" data-id="cjaxs0o5t0001uqw51e79ymcj" class="article-share-link">分享到</a>
-      
-
-      
-
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-npm换源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/14/npm换源/" class="article-date">
-  <time datetime="2017-08-14T11:50:00.000Z" itemprop="datePublished">2017-08-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/npm换源/">npm换源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="npm-Node-Package-Manager"><a href="#npm-Node-Package-Manager" class="headerlink" title="npm - Node Package Manager"></a>npm - Node Package Manager</h3><p>npm 淘宝源</p>
-<ul>
-<li>搜索地址：<a href="http://npm.taobao.org/" target="_blank" rel="noopener">http://npm.taobao.org/</a> （淘宝NPM使用说明）</li>
-<li>registry地址：<a href="http://registry.npm.taobao.org/" target="_blank" rel="noopener">http://registry.npm.taobao.org/</a></li>
-</ul>
-<p>持久更换</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-<p>临时更换并安装程序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm --registry https://registry.npm.taobao.org install express</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/08/14/npm换源/" data-id="cjaxrbxfz0000fuw5gb8k5auv" class="article-share-link">分享到</a>
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/14/hello-world/" class="article-date">
-  <time datetime="2017-08-14T11:00:00.000Z" itemprop="datePublished">2017-08-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2017/08/14/hello-world/" data-id="cjaxr2bq90000bew5hql35c4h" class="article-share-link">分享到</a>
-      
-
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
       

@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Go In Action 读书笔记（一） | Mooncaker816</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="包 目录即为包 同一目录下各个.go文件所属包名必须相同 包名可与目录名不同，但习惯保持一致（main包例外） 同一项目下，main包，main()函数，必须存在且唯一 go build编译后的可执行程序名为main包代码所在目录的目录名 导入包，编译器会按GOROOT,GOPATH的顺序搜索包名依次导入，找到即会停止搜索，找不到就报错  1234import (    &quot;fmt&quot;    &quot;os&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go In Action 读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2017/09/25/Go In Action 读书笔记（一）/index.html">
+<meta property="og:site_name" content="Mooncaker816">
+<meta property="og:description" content="包 目录即为包 同一目录下各个.go文件所属包名必须相同 包名可与目录名不同，但习惯保持一致（main包例外） 同一项目下，main包，main()函数，必须存在且唯一 go build编译后的可执行程序名为main包代码所在目录的目录名 导入包，编译器会按GOROOT,GOPATH的顺序搜索包名依次导入，找到即会停止搜索，找不到就报错  1234import (    &quot;fmt&quot;    &quot;os&quot;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-08T10:35:21.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Go In Action 读书笔记（一）">
+<meta name="twitter:description" content="包 目录即为包 同一目录下各个.go文件所属包名必须相同 包名可与目录名不同，但习惯保持一致（main包例外） 同一项目下，main包，main()函数，必须存在且唯一 go build编译后的可执行程序名为main包代码所在目录的目录名 导入包，编译器会按GOROOT,GOPATH的顺序搜索包名依次导入，找到即会停止搜索，找不到就报错  1234import (    &quot;fmt&quot;    &quot;os&quot;">
+  
+    <link rel="alternative" href="/atom.xml" title="Mooncaker816" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mooncaker816</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="yoursite.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Go In Action 读书笔记（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/25/Go In Action 读书笔记（一）/" class="article-date">
+  <time datetime="2017-09-25T09:00:00.000Z" itemprop="datePublished">2017-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Go In Action 读书笔记（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><ul>
+<li>目录即为包</li>
+<li>同一目录下各个.go文件所属包名必须相同</li>
+<li>包名可与目录名不同，但习惯保持一致（main包例外）</li>
+<li>同一项目下，main包，main()函数，必须存在且唯一</li>
+<li>go build编译后的可执行程序名为main包代码所在目录的目录名</li>
+<li><p>导入包，编译器会按GOROOT,GOPATH的顺序搜索包名依次导入，找到即会停止搜索，找不到就报错 </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"os"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>远程导入，支持直接从github，bitbucket等网站直接导入<br>事实上， 这个导入路径代表一个 URL，指向 GitHub 上的代码库。如果路径包含 URL，可以使用 Go 工具链从 DVCS 获取包，并把包的源代码保存在 GOPATH 指向的路径里与 URL 匹配的目录里。这个获取过程 使用 go get 命令完成。go get 将获取任意指定的 URL 的包，或者一个已经导入的包所依赖的其 他包。由于go get的这种递归特性，这个命令会扫描某个包的源码树，获取能找到的所有依赖包。</p>
+</li>
+</ul>
+<ul>
+<li><p>命名导入，当包名冲突时，可重定义包名以示区别，使用当中只需使用重命名后当包名即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">     <span class="string">"fmt"</span></span><br><span class="line">     myfmt <span class="string">"mylib/fmt"</span></span><br><span class="line"> )</span><br></pre></td></tr></table></figure>
+<p>当重命名名称为下划线时,导入的包只执行init初始化函数，如为数据库注册驱动</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">     <span class="string">"database/sql"</span></span><br><span class="line">   _ <span class="string">"github.com/goinaction/code/chapter3/dbdriver/postgres"</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"> sql.Open(<span class="string">"postgres"</span>, <span class="string">"mydb"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入的包必须被使用到，否则编译会报错</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2017/09/25/Go In Action 读书笔记（一）/" data-id="cjaxs0o5t0001uqw51e79ymcj" class="article-share-link">分享到</a>
+      
+
+      
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/08/Go In Action 读书笔记（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Go In Action 读书笔记（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/14/npm换源/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">npm换源</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/08/Go In Action 读书笔记（二）/">Go In Action 读书笔记（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/25/Go In Action 读书笔记（一）/">Go In Action 读书笔记（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/14/npm换源/">npm换源</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="https://github.com/mooncaker816" target="_blank">我的github</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Mingle<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

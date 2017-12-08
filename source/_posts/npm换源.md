@@ -1,6 +1,10 @@
 ---
 title: npm换源
 date: 2017-08-14 19:50:00
+categories:
+- Linux
+tags:
+- npm
 ---
 
 ### npm - Node Package Manager

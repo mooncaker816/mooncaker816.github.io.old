@@ -21,6 +21,7 @@
       <% } else { %>
         <%- post.content %>
       <% } %>
+      <%- partial('post/statement') %>
     </div>
     <footer class="article-footer">
       <% if (config.baidushare || theme.baidushare){ %>

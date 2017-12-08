@@ -1,6 +1,11 @@
 ---
 title: Go In Action 读书笔记（一）
 date: 2017-09-25 17:00:00
+categories:
+- Golang
+tags:
+- Go In Action
+- Go package
 ---
 
 ### 包

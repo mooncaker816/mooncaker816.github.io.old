@@ -1,6 +1,12 @@
 ---
 title: Go In Action 读书笔记（二）
 date: 2017-12-08 17:00:00
+categories:
+- Golang
+tags:
+- Go In Action
+- Go array
+- Go slice
 ---
 
 ## 数组

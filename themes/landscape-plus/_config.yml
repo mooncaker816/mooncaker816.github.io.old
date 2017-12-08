@@ -42,4 +42,4 @@ fb_app_id:
 #duoshuo_shortname: reqianduan
 
 # Baidu share
-#baidushare: true
+baidushare: true

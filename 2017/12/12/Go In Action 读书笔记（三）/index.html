@@ -15,7 +15,7 @@
 <meta property="og:description" content="#映射">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://mooncaker816.github.io/2017/12/12/Go%20In%20Action%20读书笔记（三）/1.png">
-<meta property="og:updated_time" content="2017-12-12T03:46:42.174Z">
+<meta property="og:updated_time" content="2017-12-12T05:40:25.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go In Action 读书笔记（三）">
 <meta name="twitter:description" content="#映射">
@@ -104,7 +104,25 @@
 <li><p>键通过散列函数得到散列值，该散列值低位用于确定该键值对所在子集的位置，高位用于确认该键值对在该子集中所在的位置</p>
 <img src="/2017/12/12/Go%20In%20Action%20读书笔记（三）/1.png" title="映射散列表">
 </li>
-<li><p>​</p>
+<li><p>创建，初始化</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个映射，键的类型是 string，值的类型是 int</span></span><br><span class="line">dict := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line"><span class="comment">// 创建一个映射，键和值的类型都是 string</span></span><br><span class="line"><span class="comment">// 使用两个键值对初始化映射</span></span><br><span class="line">dict := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;<span class="string">"Red"</span>: <span class="string">"#da1337"</span>, <span class="string">"Orange"</span>: <span class="string">"#e95a22"</span>&#125;</span><br><span class="line"><span class="comment">// 空map</span></span><br><span class="line">dict := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>&#123;&#125;</span><br><span class="line"><span class="comment">// nil map，无法直接赋值，需先进行初始化分配空间</span></span><br><span class="line"><span class="keyword">var</span> dict <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>映射的键必须可以进行<code>==</code>运算，<strong>切片、函数以及包含切片的结构类型这些类型由于具有引用语义， 不能作为映射的键</strong>，使用这些类型会造成编译错误</p>
+</li>
+<li><p>赋值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个空映射，用来存储颜色以及颜色对应的十六进制代码</span></span><br><span class="line">colors := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;&#125;</span><br><span class="line"><span class="comment">// 将 Red 的代码加入到映射</span></span><br><span class="line">colors[<span class="string">"Red"</span>] = <span class="string">"#da1337"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断键值是否存在</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取键 Blue 对应的值</span></span><br><span class="line">value, exists := colors[<span class="string">"Blue"</span>] </span><br><span class="line"><span class="comment">// 这个键存在吗？ </span></span><br><span class="line"><span class="keyword">if</span> exists &#123; </span><br><span class="line">  fmt.Println(value) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代映射，由于映射是无序的，所以单纯的for range迭代得到的结果也是无序的，若需要按顺序迭代，需先按key进行排序，再根据key来取map中对应的值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示映射里的所有颜色(无序)</span></span><br><span class="line"><span class="keyword">for</span> key, value := <span class="keyword">range</span> colors &#123; </span><br><span class="line">  fmt.Printf(<span class="string">"Key: %s Value: %s\n"</span>, key, value) </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 有序迭代</span></span><br><span class="line">s1 := []<span class="keyword">string</span></span><br><span class="line"><span class="keyword">for</span> key := <span class="keyword">range</span> colors&#123;</span><br><span class="line">  s1 = <span class="built_in">append</span>(s1,key)</span><br><span class="line">&#125;</span><br><span class="line">sort.Strings(s1)</span><br><span class="line"><span class="keyword">for</span> _,v := <span class="keyword">range</span> s1&#123;</span><br><span class="line">  fmt.Printf(<span class="string">"Key: %s Value: %s\n"</span>, v, colors[v])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除键为 Coral 的键值对 </span></span><br><span class="line"><span class="built_in">delete</span>(colors, <span class="string">"Coral"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数间的传递 - <strong>表现特点与切片类似，传输成本很小，不会复制底层数据结构</strong></p>
+<p>​</p>
 </li>
 </ul>
 

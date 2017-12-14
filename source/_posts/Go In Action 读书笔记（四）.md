@@ -20,9 +20,9 @@ tags:
   //多个基本类型组合而成
   type user struct {
       name        string
-      email        string
-      ext            int
-      privileged        bool
+      email       string
+      ext         int
+      privileged  bool
   }
   //一个基本类型，亦可称为别称
   type Duration int64
@@ -136,14 +136,14 @@ tags:
 
   3. 如果使用**<u>指针接收者</u>**来实现一个接口，那么只有指向那个类型的指针才能够实现对应的接口
      如果使用**<u>值接收者</u>**来实现一个接口，那么那个类型的值和指针都能够实现对应的接口
-     | Methods Receivers | Values    |
-     | ------------------ | --------- |
-     | (t T)              | T and \*T |
-     | (t \*T)            | \*T       |
+
+| Methods Receivers | Values    |
+| ------------------ | --------- |
+| (t T)              | T and \*T |
+| (t \*T)            | \*T       |
 
 
-
-     **因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。**
+**因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。**
 
 - 结论：
 

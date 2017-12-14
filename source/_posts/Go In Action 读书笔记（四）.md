@@ -19,9 +19,9 @@ tags:
   ```go
   //多个基本类型组合而成
   type user struct {
-      name 		string
-      email 		string
-      ext 		int
+      name			string
+      email			string
+      ext			int
       privileged	bool
   }
   //一个基本类型，亦可称为别称
@@ -36,9 +36,9 @@ tags:
   //定义一个类型为user,且有初始值的结构变量bill
   bill := user{"Lisa", "lisa@email.com", 123, true}
   bill := user{
-    name : 		"Lisa",
-    email : 		"lisa@email.com",
-    ext : 		123,
+    name :			"Lisa",
+    email :			"lisa@email.com",
+    ext :			123,
     privileged :	true,
   }
   ```
@@ -61,8 +61,8 @@ tags:
   ```go
   type score struct {
     math		int
-    english	int
-    chinese	int
+    english		int
+    chinese		int
   }
   //有接收者
   func (s score) sum() int{
@@ -144,7 +144,7 @@ tags:
      | ----------------- | -------- |
      | (t T)             | T and *T |
      | (t *T)            | *T       |
-     ***因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。***
+     **因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。**
 
 - 结论：
 

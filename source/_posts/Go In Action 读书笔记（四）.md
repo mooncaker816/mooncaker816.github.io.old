@@ -12,15 +12,17 @@ tags:
 
 ### 用户类型
 
+<!-- more -->
+
 - 所谓用户类型，就是由一个或多个基本类型或用户类型组合而成的一个新的结构类型。
 
   ```go
   //多个基本类型组合而成
   type user struct {
-      name 		string
+      name 			string
       email 		string
-    	ext 		int
-    	privileged 	bool
+      ext 			int
+      privileged 	bool
   }
   //一个基本类型，亦可称为别称
   type Duration int64
@@ -34,9 +36,9 @@ tags:
   //定义一个类型为user,且有初始值的结构变量bill
   bill := user{"Lisa", "lisa@email.com", 123, true}
   bill := user{
-    name : 		"Lisa",
+    name : 			"Lisa",
     email : 		"lisa@email.com",
-    ext : 		123,
+    ext : 			123,
     privileged : 	true,
   }
   ```
@@ -79,7 +81,7 @@ tags:
   ```go
   type user struct {
       name	 string
-    	email	 string
+      email	 string
   }
   // notify 使用值接收者实现了一个方法
   func (u user) notify(){
@@ -145,7 +147,7 @@ tags:
      | (t T)             | T and *T |
      | (t *T)            | *T       |
 
-​	      <u>***因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。***</u>
+  ​      <u>***因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。***</u>
 
 - 结论：
 
@@ -157,7 +159,7 @@ tags:
   }
   type user struct {
       name 	string
-    	email 	string
+      email string
   }
   func (u user) notify() {
     fmt.Printf("Sending user email to %s<%s>\n",u.name,u.email)
@@ -183,7 +185,7 @@ tags:
   }
   type user struct {
       name 	string
-    	email 	string
+      email 	string
   }
   func (u *user) notify() {
     fmt.Printf("Sending user email to %s<%s>\n",u.name,u.email)

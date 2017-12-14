@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://oumnldfwl.bkt.clouddn.com/%E5%AE%9E%E4%BD%93%E5%80%BC%E8%B5%8B%E5%80%BC%E5%90%8E%E6%8E%A5%E5%8F%A3%E5%80%BC.png">
 <meta property="og:image" content="http://oumnldfwl.bkt.clouddn.com/%E5%AE%9E%E4%BD%93%E6%8C%87%E9%92%88%E8%B5%8B%E5%80%BC%E5%90%8E%E6%8E%A5%E5%8F%A3%E5%80%BC.png">
-<meta property="og:updated_time" content="2017-12-14T13:28:11.458Z">
+<meta property="og:updated_time" content="2017-12-14T13:30:29.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go In Action 读书笔记（四）">
 <meta name="twitter:description" content="用户类型">
@@ -144,11 +144,28 @@
 <li><p>方法集定义了一组关联到给定类型的值或者指针的方法</p>
 </li>
 <li><p>T 类型的值的方法集只包含值 接收者声明的方法，而<br>指向 T 类型的指针的方法集既包含值接收者声明的方法，也包含指针接收者声明的方法  </p>
-<p>|Values|Methods Receivers|<br> |—–|—————-|<br> |T      | (t T)             |<br> |*T     | (t T) and (t *T)  |  </p>
 </li>
 </ol>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Values</th>
+<th>Methods Receivers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>(t T)</td>
+</tr>
+<tr>
+<td>*T</td>
+<td>(t T) and (t *T)</td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li><p>如果使用<strong><u>指针接收者</u></strong>来实现一个接口，那么只有指向那个类型的指针才能够实现对应的接口<br>如果使用<strong><u>值接收者</u></strong>来实现一个接口，那么那个类型的值和指针都能够实现对应的接口</p>
 <p> XX|YY<br> –|:–|–<br> a|b<br> c|d</p>
@@ -161,27 +178,10 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> notifier <span class="keyword">interface</span> &#123;</span><br><span class="line">  notify()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> user <span class="keyword">struct</span> &#123;</span><br><span class="line">    name 	<span class="keyword">string</span></span><br><span class="line">    email 	<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u user)</span> <span class="title">notify</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Printf(<span class="string">"Sending user email to %s&lt;%s&gt;\n"</span>,u.name,u.email)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//接收一个实现notifier接口的值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendNotification</span><span class="params">(n notifier)</span></span> &#123;</span><br><span class="line">  n.notify()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  bill := user&#123;<span class="string">"Bill"</span>, <span class="string">"bill@email.com"</span>&#125;</span><br><span class="line">  lisa := user&#123;<span class="string">"Lisa"</span>, <span class="string">"lisa@email.com"</span>&#125;</span><br><span class="line">  sendNotification(bill)<span class="comment">// Sending User Email To Bill&lt;bill@email.com&gt;</span></span><br><span class="line">  sendNotification(&amp;lisa)<span class="comment">// Sending User Email To Lisa&lt;lisa@email.com&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>实体类型以指针接收者实现接口的时候，只有指向这个类型的指针才被认为实现了该接口</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> notifier <span class="keyword">interface</span> &#123;</span><br><span class="line">  notify()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> user <span class="keyword">struct</span> &#123;</span><br><span class="line">    name 	<span class="keyword">string</span></span><br><span class="line">    email 	<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u *user)</span> <span class="title">notify</span><span class="params">()</span></span> &#123;</span><br><span class="line">  fmt.Printf(<span class="string">"Sending user email to %s&lt;%s&gt;\n"</span>,u.name,u.email)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//接收一个实现notifier接口的值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendNotification</span><span class="params">(n notifier)</span></span> &#123;</span><br><span class="line">  n.notify()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  bill := user&#123;<span class="string">"Bill"</span>, <span class="string">"bill@email.com"</span>&#125;</span><br><span class="line">  lisa := user&#123;<span class="string">"Lisa"</span>, <span class="string">"lisa@email.com"</span>&#125;</span><br><span class="line">  sendNotification(bill)<span class="comment">// ERROR</span></span><br><span class="line">  sendNotification(&amp;lisa)<span class="comment">// Sending User Email To Lisa&lt;lisa@email.com&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  ss|qq<br>  -|-<br>  1|2<br>  3|4</p>
+<p>​</p>
 </li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>ss</th>
-<th>qq</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>  ​</p>
 
       
       

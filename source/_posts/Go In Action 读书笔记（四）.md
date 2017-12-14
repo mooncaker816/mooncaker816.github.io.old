@@ -21,8 +21,8 @@ tags:
   type user struct {
       name			string
       email			string
-      ext			int
-      privileged	bool
+      ext				int
+      privileged		bool
   }
   //一个基本类型，亦可称为别称
   type Duration int64
@@ -36,8 +36,8 @@ tags:
   //定义一个类型为user,且有初始值的结构变量bill
   bill := user{"Lisa", "lisa@email.com", 123, true}
   bill := user{
-    name :			"Lisa",
-    email :			"lisa@email.com",
+    name :		"Lisa",
+    email :		"lisa@email.com",
     ext :			123,
     privileged :	true,
   }
@@ -60,7 +60,7 @@ tags:
 
   ```go
   type score struct {
-    math		int
+    math			int
     english		int
     chinese		int
   }
@@ -128,7 +128,6 @@ tags:
   1. 方法集定义了一组关联到给定类型的值或者指针的方法
 
   2. T 类型的值的方法集只包含值 接收者声明的方法，而
-
      指向 T 类型的指针的方法集既包含值接收者声明的方法，也包含指针接收者声明的方法
 
      | Values | Methods Receivers |
@@ -137,13 +136,13 @@ tags:
      | *T     | (t T) and (t *T)  |
 
   3. 如果使用**<u>指针接收者</u>**来实现一个接口，那么只有指向那个类型的指针才能够实现对应的接口
-
      如果使用**<u>值接收者</u>**来实现一个接口，那么那个类型的值和指针都能够实现对应的接口
 
      | Methods Receivers | Values   |
      | ----------------- | -------- |
      | (t T)             | T and *T |
      | (t *T)            | *T       |
+
      **因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。**
 
 - 结论：

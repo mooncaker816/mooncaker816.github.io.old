@@ -19,9 +19,9 @@ tags:
   ```go
   //多个基本类型组合而成
   type user struct {
-      name			string
-      email			string
-      ext				int
+      name		string
+      email		string
+      ext			int
       privileged		bool
   }
   //一个基本类型，亦可称为别称
@@ -36,9 +36,9 @@ tags:
   //定义一个类型为user,且有初始值的结构变量bill
   bill := user{"Lisa", "lisa@email.com", 123, true}
   bill := user{
-    name :		"Lisa",
-    email :		"lisa@email.com",
-    ext :			123,
+    name :	"Lisa",
+    email :	"lisa@email.com",
+    ext :		123,
     privileged :	true,
   }
   ```
@@ -60,9 +60,9 @@ tags:
 
   ```go
   type score struct {
-    math			int
-    english		int
-    chinese		int
+    math		int
+    english	int
+    chinese	int
   }
   //有接收者
   func (s score) sum() int{
@@ -129,7 +129,7 @@ tags:
 
   2. T 类型的值的方法集只包含值 接收者声明的方法，而
      指向 T 类型的指针的方法集既包含值接收者声明的方法，也包含指针接收者声明的方法
-
+     ​
      | Values | Methods Receivers |
      | :----- | :---------------- |
      | T      | (t T)             |

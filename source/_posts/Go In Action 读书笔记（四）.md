@@ -22,7 +22,7 @@ tags:
       name 		string
       email 		string
       ext 		int
-      privileged 	bool
+      privileged	bool
   }
   //一个基本类型，亦可称为别称
   type Duration int64
@@ -39,7 +39,7 @@ tags:
     name : 		"Lisa",
     email : 		"lisa@email.com",
     ext : 		123,
-    privileged : 	true,
+    privileged :	true,
   }
   ```
 
@@ -60,9 +60,9 @@ tags:
 
   ```go
   type score struct {
-    math int
-    english int
-    chinese int
+    math		int
+    english	int
+    chinese	int
   }
   //有接收者
   func (s score) sum() int{
@@ -144,7 +144,7 @@ tags:
      | ----------------- | -------- |
      | (t T)             | T and *T |
      | (t *T)            | *T       |
-      <u>***因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。***</u>
+     ***因为不是总能获取一个值的地址，所以值的方法集只包括了使用值接收者实现的方法。***
 
 - 结论：
 

@@ -11,6 +11,8 @@ tags:
 
 Modify the echo program to also print os.Args[0], the name of the command that invoked it.
 
+<!-- more -->
+
 ```go
 //Modify the echo program to also print os.Args[0], the name of the command that invoked it.
 package main
@@ -37,7 +39,7 @@ $ go run main.go a b c d
 a b c d
 ```
 
-### Ex1.2
+### Ex 1.2
 
 Modify the echo program to print the index and value of each of its arguments, one per line.
 
@@ -64,7 +66,7 @@ $ go run main.go a b c d
 第4个参数为：d
 ```
 
-### Ex1.3
+### Ex 1.3
 
 Experiment to measure the difference in running time between our po inefﬁcient versions and the one that uses strings.Join. (Section 1.6 illustrates part of the time package, and Section 11.4 shows how to write benchmark tests for systematic performance evaluation.)
 
@@ -195,7 +197,9 @@ There are 4 lines ("b5") in file "b"
 
 
 
-### Ex1.5
+### Ex 1.5
+
+Change the Lissajous program’s color palette to green on black, for a authenticity. To create the web color #RRGGBB, use color.RGBA{0xRR, 0xGG, 0xBB, 0xff}, where each pair of hexadecimal digits represents the intensity of the red, green, or blue component of the pixel.
 
 ```go
 package main
@@ -281,6 +285,10 @@ func lissajous(out io.Writer) {
 ```
 
 ![替换为绿色](http://oumnldfwl.bkt.clouddn.com/out.gif)
+
+### Ex 1.6
+
+Modify the Lissajous program to produce images in multiple colors by adding more values to palette and then displaying them by changing the third argument of SetColorIndex in some interesting way.
 
 ```go
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
@@ -374,4 +382,6 @@ func lissajous(out io.Writer) {
 ```
 
 ![多种颜色交替](http://oumnldfwl.bkt.clouddn.com/out2.gif)
+
+
 

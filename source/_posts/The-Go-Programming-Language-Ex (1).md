@@ -383,5 +383,191 @@ func lissajous(out io.Writer) {
 
 ![多种颜色交替](http://oumnldfwl.bkt.clouddn.com/out2.gif)
 
+### Ex 1.7
 
+The function call io.Copy(dst, src) reads from src and writes to dst. Use it instead of ioutil.ReadAll to copy the response body to os.Stdout without requiring a buffer large enough to hold the entire stream. Be sure to check the error result of io.Copy.
 
+```go
+// Fetch prints the content found at a URL.
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		resp, err := http.Get(url)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+			os.Exit(1)
+		}
+		//b, err := ioutil.ReadAll(resp.Body)
+		_, err = io.Copy(os.Stdout, resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
+			os.Exit(1)
+		}
+		//fmt.Printf("%s", b)
+	}
+}
+
+```
+
+### Ex 1.8
+
+Modify fetch to add the preﬁx http:// to each argument URL if it is missing. You might want to use strings.HasPrefix.
+
+```go
+// Fetch prints the content found at a URL.
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strings"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		if !strings.HasPrefix(url, "http://") {
+			url = "http://" + url
+		}
+		resp, err := http.Get(url)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+			os.Exit(1)
+		}
+		//b, err := ioutil.ReadAll(resp.Body)
+		_, err = io.Copy(os.Stdout, resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
+			os.Exit(1)
+		}
+		//fmt.Printf("%s", b)
+	}
+}
+```
+
+### Ex 1.9
+
+Modify fetch to also print the HTTP status code, found in resp.Status.
+
+```go
+// Fetch prints the content found at a URL.
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strings"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		if !strings.HasPrefix(url, "http://") {
+			url = "http://" + url
+		}
+		resp, err := http.Get(url)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
+			os.Exit(1)
+		}
+		//b, err := ioutil.ReadAll(resp.Body)
+		_, err = io.Copy(os.Stdout, resp.Body)
+		fmt.Println("Status:", resp.Status)//Status: 200 OK
+		resp.Body.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fetch: reading %s: %v\n", url, err)
+			os.Exit(1)
+		}
+		//fmt.Printf("%s", b)
+	}
+}
+```
+
+### Ex 1.10
+
+Exercise 1.10: Find a web site that produces a large amount of data. Investigate caching by running fetchall twice in succession to see whether the reported time changes much. Do you get the same content each time? Modify fetchall to print its output to a ﬁle so it can be examined.
+
+```go
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+// See page 17.
+//!+
+
+// Fetchall fetches URLs in parallel and reports their times and sizes.
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strconv"
+	"time"
+)
+
+func main() {
+	start := time.Now()
+	ch := make(chan string)
+	for ix, url := range os.Args[1:] {
+		go fetch(strconv.FormatInt(int64(ix), 10), url, ch) // start a goroutine
+	}
+	for range os.Args[1:] {
+		fmt.Println(<-ch) // receive from channel ch
+	}
+	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
+}
+
+func fetch(fileName, url string, ch chan<- string) {
+	start := time.Now()
+	resp, err := http.Get(url)
+	if err != nil {
+		ch <- fmt.Sprint(err) // send to channel ch
+		return
+	}
+	dst, err := os.OpenFile(fileName, os.O_WRONLY|os.O_CREATE, 0644)
+	if err != nil {
+		fmt.Println("happend a error when opening", err)
+	}
+	defer dst.Close()
+	nbytes, err := io.Copy(dst, resp.Body)
+	resp.Body.Close() // don't leak resources
+	if err != nil {
+		ch <- fmt.Sprintf("while reading %s: %v", url, err)
+		return
+	}
+	secs := time.Since(start).Seconds()
+	ch <- fmt.Sprintf("%.2fs  %7d  %s", secs, nbytes, url)
+}
+
+//!-
+
+```
+
+```bash
+$ go run main.go http://www.baidu.com http://www.taobao.com http://www.360buy.com
+0.09s   112255  http://www.baidu.com file 0
+0.51s   126963  http://www.360buy.com file 2
+0.51s   128027  http://www.taobao.com file 1
+0.51s elapsed
+```
+
+### Ex 1.11
+
+TBC
+
+### Ex 1.12
+
+TBC

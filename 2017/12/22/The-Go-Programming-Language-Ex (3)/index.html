@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>The Go Programming Language Ex（3） | Mooncaker816</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ex 3.10Write a non-recursive version of comma, using bytes.Buffer instead of str concatenation.">
+<meta name="keywords" content="The Go Programming Language Ex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Go Programming Language Ex（3）">
+<meta property="og:url" content="https://mooncaker816.github.io/2017/12/22/The-Go-Programming-Language-Ex (3)/index.html">
+<meta property="og:site_name" content="Mooncaker816">
+<meta property="og:description" content="Ex 3.10Write a non-recursive version of comma, using bytes.Buffer instead of str concatenation.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-22T11:30:05.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Go Programming Language Ex（3）">
+<meta name="twitter:description" content="Ex 3.10Write a non-recursive version of comma, using bytes.Buffer instead of str concatenation.">
+  
+    <link rel="alternative" href="/atom.xml" title="Mooncaker816" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mooncaker816</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="mooncaker816.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-The-Go-Programming-Language-Ex (3)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/22/The-Go-Programming-Language-Ex (3)/" class="article-date">
+  <time datetime="2017-12-22T09:00:00.000Z" itemprop="datePublished">2017-12-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Golang/">Golang</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The Go Programming Language Ex（3）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Ex-3-10"><a href="#Ex-3-10" class="headerlink" title="Ex 3.10"></a>Ex 3.10</h3><p>Write a non-recursive version of comma, using bytes.Buffer instead of str concatenation.</p>
+<a id="more"></a>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> os.Args[<span class="number">1</span>:] &#123;</span><br><span class="line">		s := []<span class="keyword">byte</span>(v)</span><br><span class="line">		<span class="keyword">var</span> buf bytes.Buffer</span><br><span class="line">		<span class="keyword">for</span> i, j := <span class="built_in">len</span>(s)<span class="number">-1</span>, <span class="number">0</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">			err := buf.WriteByte(s[i])</span><br><span class="line">			<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">				log.Fatal(<span class="string">"write buf failed"</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> j++; j != <span class="built_in">len</span>(s) &amp;&amp; j%<span class="number">3</span> == <span class="number">0</span> &#123;</span><br><span class="line">				err = buf.WriteByte(<span class="string">','</span>)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(Reverse(buf.String()))</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	r := []<span class="keyword">rune</span>(s)</span><br><span class="line">	<span class="keyword">for</span> i, j := <span class="built_in">len</span>(r)<span class="number">-1</span>, <span class="number">0</span>; i &gt; j; i, j = i<span class="number">-1</span>, j+<span class="number">1</span> &#123;</span><br><span class="line">		r[i], r[j] = r[j], r[i]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ./ex3.10 12345678 829356934592162 23 7777 333</span><br><span class="line">12,345,678</span><br><span class="line">829,356,934,592,162</span><br><span class="line">23</span><br><span class="line">7,777</span><br><span class="line">333</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-3-11"><a href="#Ex-3-11" class="headerlink" title="Ex 3.11"></a>Ex 3.11</h3><p>Enhance comma so that it deals correctly with ﬂoating-point numbers and an optional sign.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> os.Args[<span class="number">1</span>:] &#123;</span><br><span class="line">		<span class="keyword">var</span> lbuf, rbuf bytes.Buffer</span><br><span class="line">		<span class="keyword">var</span> lstr, rstr, sign <span class="keyword">string</span></span><br><span class="line">		<span class="keyword">if</span> v[<span class="number">0</span>] == <span class="string">'+'</span> || v[<span class="number">0</span>] == <span class="string">'-'</span> &#123;</span><br><span class="line">			sign = <span class="keyword">string</span>(v[<span class="number">0</span>])</span><br><span class="line">			v = v[<span class="number">1</span>:]</span><br><span class="line">		&#125;</span><br><span class="line">		chars := bytes.SplitAfterN([]<span class="keyword">byte</span>(v), []<span class="keyword">byte</span>(<span class="string">"."</span>), <span class="number">2</span>)</span><br><span class="line">		<span class="keyword">for</span> ix, pc := <span class="keyword">range</span> chars &#123;</span><br><span class="line">			<span class="keyword">if</span> ix == <span class="number">0</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> pc[<span class="built_in">len</span>(pc)<span class="number">-1</span>] == <span class="string">'.'</span> &#123;</span><br><span class="line">					pc = pc[:<span class="built_in">len</span>(pc)<span class="number">-1</span>]</span><br><span class="line">					err := lbuf.WriteByte(<span class="string">'.'</span>)</span><br><span class="line">					<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">						log.Fatal(<span class="string">"write '.' in buf failed"</span>)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> <span class="built_in">len</span>(pc) &gt; <span class="number">0</span> &#123;</span><br><span class="line">					<span class="keyword">for</span> i, j := <span class="built_in">len</span>(pc)<span class="number">-1</span>, <span class="number">0</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">						err := lbuf.WriteByte(pc[i])</span><br><span class="line">						<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">							log.Fatal(<span class="string">"write int part in buf failed"</span>)</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">if</span> j++; j != <span class="built_in">len</span>(pc) &amp;&amp; j%<span class="number">3</span> == <span class="number">0</span> &#123;</span><br><span class="line">							err = lbuf.WriteByte(<span class="string">','</span>)</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					lstr = Reverse(lbuf.String())</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> ix == <span class="number">1</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> <span class="built_in">len</span>(pc) &gt; <span class="number">0</span> &#123;</span><br><span class="line">					<span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="number">0</span>; i &lt; <span class="built_in">len</span>(pc); i++ &#123;</span><br><span class="line">						err := rbuf.WriteByte(pc[i])</span><br><span class="line">						<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">							log.Fatal(<span class="string">"write float part in buf failed"</span>)</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">if</span> j++; j != <span class="built_in">len</span>(pc) &amp;&amp; j%<span class="number">3</span> == <span class="number">0</span> &#123;</span><br><span class="line">							err = rbuf.WriteByte(<span class="string">','</span>)</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					rstr = rbuf.String()</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					rstr = <span class="string">"0"</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(sign + lstr + rstr)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	r := []<span class="keyword">rune</span>(s)</span><br><span class="line">	<span class="keyword">for</span> i, j := <span class="built_in">len</span>(r)<span class="number">-1</span>, <span class="number">0</span>; i &gt; j; i, j = i<span class="number">-1</span>, j+<span class="number">1</span> &#123;</span><br><span class="line">		r[i], r[j] = r[j], r[i]</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ go run comma.go +123456.4563 -2342335352234.234 234235235211 +1243535353434 24533. 454545.345354456</span><br><span class="line">+123,456.456,3</span><br><span class="line">-2,342,335,352,234.234</span><br><span class="line">234,235,235,211</span><br><span class="line">+1,243,535,353,434</span><br><span class="line">24,533.0</span><br><span class="line">454,545.345,354,456</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-3-12"><a href="#Ex-3-12" class="headerlink" title="Ex 3.12"></a>Ex 3.12</h3><p>Write a function that reports whether two strings are anagrams of each other, that is, they contain the same letters in a different order.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"sort"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s1 := []<span class="keyword">rune</span>(os.Args[<span class="number">1</span>])</span><br><span class="line">	s2 := []<span class="keyword">rune</span>(os.Args[<span class="number">2</span>])</span><br><span class="line">	<span class="keyword">var</span> ss1 = <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="built_in">len</span>(s1))</span><br><span class="line">	<span class="keyword">var</span> ss2 = <span class="built_in">make</span>([]<span class="keyword">string</span>, <span class="built_in">len</span>(s2))</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> s1 &#123;</span><br><span class="line">		ss1[i] = <span class="keyword">string</span>(v)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> s2 &#123;</span><br><span class="line">		ss2[i] = <span class="keyword">string</span>(v)</span><br><span class="line">	&#125;</span><br><span class="line">	sort.Strings(ss1)</span><br><span class="line">	sort.Strings(ss2)</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(ss1) != <span class="built_in">len</span>(ss2) &#123;</span><br><span class="line">		fmt.Println(<span class="string">"they are NOT anagrams strings"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(ss1); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> ss1[i] != ss2[i] &#123;</span><br><span class="line">			fmt.Println(<span class="string">"they are NOT anagrams strings"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"they are anagrams strings"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ go run anagrams.go abcdefg acdefgb</span><br><span class="line">they are anagrams strings</span><br><span class="line">$ go run anagrams.go aabbccdd dcbadcba</span><br><span class="line">they are anagrams strings</span><br><span class="line">$ go run anagrams.go abcde dbca</span><br><span class="line">they are NOT anagrams strings</span><br><span class="line">$ go run anagrams.go abcde dbcaf</span><br><span class="line">they are NOT anagrams strings</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-3-13"><a href="#Ex-3-13" class="headerlink" title="Ex 3.13"></a>Ex 3.13</h3><p>Write const declarations for KB, MB, up through YB as compactly as you can.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	_   = <span class="keyword">int64</span>(<span class="number">1</span>) &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">	KiB <span class="comment">// 1024        2e1</span></span><br><span class="line">	MiB <span class="comment">// 1048576     2e20</span></span><br><span class="line">	GiB <span class="comment">// 1073741824  2e30</span></span><br><span class="line">	TiB <span class="comment">// 1099511627776</span></span><br><span class="line">	PiB <span class="comment">// 1125899906842624</span></span><br><span class="line">	EiB <span class="comment">// 1152921504606846976</span></span><br><span class="line">	<span class="comment">//ZiB // 1180591620717411303424  overflow</span></span><br><span class="line">	<span class="comment">//YiB // 1208925819614629174706176 overflow</span></span><br><span class="line">	KB = <span class="keyword">int64</span>(<span class="number">1000</span>)</span><br><span class="line">	MB = <span class="number">1000</span> * KB</span><br><span class="line">	GB = <span class="number">1000</span> * MB</span><br><span class="line">	TB = <span class="number">1000</span> * GB</span><br><span class="line">	PB = <span class="number">1000</span> * TB</span><br><span class="line">	EB = <span class="number">1000</span> * PB</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(KiB, MiB, GiB, TiB, PiB, EiB)</span><br><span class="line">	fmt.Println(KB, MB, GB, TB, PB, EB)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go run const.go</span><br><span class="line">1024 1048576 1073741824 1099511627776 1125899906842624 1152921504606846976</span><br><span class="line">1000 1000000 1000000000 1000000000000 1000000000000000 1000000000000000000</span><br></pre></td></tr></table></figure>
+
+      
+      
+  <div class="article-statement">
+    <hr>  
+    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
+    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
+  </div>
+
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://mooncaker816.github.io/2017/12/22/The-Go-Programming-Language-Ex (3)/" data-id="cjbhu4mru000021w5i9v6k1ro" class="article-share-link" data-share="baidu" data-title="The Go Programming Language Ex（3）">分享到</a>
+      
+
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/The-Go-Programming-Language-Ex/">The Go Programming Language Ex</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/21/The-Go-Programming-Language-Ex (2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">The Go Programming Language Ex（2）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-In-Action/">Go In Action</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-array/">Go array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-interface/">Go interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-map/">Go map</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-method/">Go method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-package/">Go package</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-slice/">Go slice</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-type/">Go type</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Go-Programming-Language-Ex/">The Go Programming Language Ex</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go-In-Action/" style="font-size: 20px;">Go In Action</a> <a href="/tags/Go-array/" style="font-size: 10px;">Go array</a> <a href="/tags/Go-interface/" style="font-size: 10px;">Go interface</a> <a href="/tags/Go-map/" style="font-size: 10px;">Go map</a> <a href="/tags/Go-method/" style="font-size: 10px;">Go method</a> <a href="/tags/Go-package/" style="font-size: 10px;">Go package</a> <a href="/tags/Go-slice/" style="font-size: 10px;">Go slice</a> <a href="/tags/Go-type/" style="font-size: 10px;">Go type</a> <a href="/tags/The-Go-Programming-Language-Ex/" style="font-size: 15px;">The Go Programming Language Ex</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/22/The-Go-Programming-Language-Ex (3)/">The Go Programming Language Ex（3）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/21/The-Go-Programming-Language-Ex (2)/">The Go Programming Language Ex（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/19/The-Go-Programming-Language-Ex (1)/">The Go Programming Language Ex（1）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/14/Go In Action 读书笔记（四）/">Go In Action 读书笔记（四）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/12/Go In Action 读书笔记（三）/">Go In Action 读书笔记（三）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="https://github.com/mooncaker816" target="_blank">我的github</a>
+          </li>
+        
+          <li>
+            <a href="https://coding.net/u/mooncaker816" target="_blank">我的coding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Mingle<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a><br/>
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

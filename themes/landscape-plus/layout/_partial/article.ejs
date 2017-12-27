@@ -36,7 +36,7 @@
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comments') %></a>
       <% } %>
 
-      <% if (config.pinglun || theme.pinglun){ %>
+      <% if ((config.pinglun || theme.pinglun) && !index){ %>
       <div id="gitmentContainer"></div>
       <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
       <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>

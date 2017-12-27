@@ -194,6 +194,8 @@ main.Movie{Title:"", Year:"", Poster:"", Response:"False", Errormsg:"Movie not f
 Movie not found!
 ```
 
+![Triangle.jpg](http://oumnldfwl.bkt.clouddn.com/ex4.13.png)
+
 ### Ex 4.14
 
 Create a web server that queries GitHub once and then allows navigation of the list of bug reports, milestones, and users.
@@ -765,5 +767,5 @@ Milestone: Go1.11
 </table>
 ```
 
-![ex4.14 html](http://oumnldfwl.bkt.clouddn.com/ex4.14.png)
+![ex4.14 report.html](http://oumnldfwl.bkt.clouddn.com/ex4.14.png)
 

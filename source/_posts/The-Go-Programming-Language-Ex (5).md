@@ -14,6 +14,8 @@ tags:
 
 Modify charcount to count letters, digits, and so on in their Unicode categories, using functions like unicode.IsLetter.
 
+<!-- more -->
+
 ```go
 package main
 
@@ -508,6 +510,7 @@ Milestone: Go1.11
 ```
 
 ```html
+//report.html
 
 <h1>41 issues</h1>
 <table>
@@ -762,5 +765,5 @@ Milestone: Go1.11
 </table>
 ```
 
-
+![ex4.14 html](http://oumnldfwl.bkt.clouddn.com/ex4.14.png)
 

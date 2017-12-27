@@ -45,9 +45,15 @@ fb_app_id:
 # Baidu share
 baidushare: true
 
-# pinglun
-pinglun: true
-pinglun_owner: mooncaker816
-pinglun_repo: mooncaker816.github.io
-pinglun_client_id: 60b359cdeb3c484dbaa1
-pinglun_client_secret: 7df3c9ab596e17a67e10b61a38c4f1c7ca976b63
+# valine comment system. https://valine.js.org
+valine:
+  enable: true # if you want use valine,please set this value is ture
+  appId: urzxMG6IH6XwD3AIW0VH4lMb-gzGzoHsz # leancloud application app id
+  appKey: WPbRVjy6oFOvnxYJJx9uTRR9 # leancloud application app key
+  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
+  verify: false # valine verify code (true/false)
+  pageSize: 10 # comment list page size
+  avatar: mm # gravatar style https://valine.js.org/#/avatar
+  lang: zh-cn # i18n: zh-cn/en
+  placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+  guest_info: nick,mail,link #valine comment header info

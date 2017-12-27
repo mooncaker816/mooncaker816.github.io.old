@@ -48,6 +48,6 @@ baidushare: true
 # pinglun
 pinglun: true
 pinglun_owner: mooncaker816
-pinglun_repo: comment
+pinglun_repo: mooncaker816.github.io
 pinglun_client_id: 60b359cdeb3c484dbaa1
 pinglun_client_secret: 7df3c9ab596e17a67e10b61a38c4f1c7ca976b63

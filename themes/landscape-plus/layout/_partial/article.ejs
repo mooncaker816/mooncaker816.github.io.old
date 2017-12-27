@@ -36,6 +36,24 @@
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comments') %></a>
       <% } %>
 
+
+      <% if (config.pinglun || theme.pinglun){ %>
+      <div id="container"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+      var gitment = new Gitment({
+        owner: '<%= theme.pinglun_owner %>',
+        repo: '<%= theme.pinglun_repo %>',
+        oauth: {
+          client_id: '<%= theme.pinglun_client_id %>',
+          client_secret: '<%= theme.pinglun_client_secret %>',
+        },
+      })
+      gitment.render('container')
+      </script>
+      <% } %>
+
       <%- partial('post/tag') %>
     </footer>
   </div>

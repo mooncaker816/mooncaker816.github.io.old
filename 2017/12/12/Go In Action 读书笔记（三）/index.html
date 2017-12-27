@@ -138,28 +138,16 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://mooncaker816.github.io/2017/12/12/Go In Action 读书笔记（三）/" data-id="cjbp5m9gi00018nw5yvnbztdq" class="article-share-link" data-share="baidu" data-title="Go In Action 读书笔记（三）">分享到</a>
+        <a data-url="https://mooncaker816.github.io/2017/12/12/Go In Action 读书笔记（三）/" data-id="cjbp7daf10001fvw503z4tspa" class="article-share-link" data-share="baidu" data-title="Go In Action 读书笔记（三）">分享到</a>
       
 
       
-
       
-      <div id="gitmentContainer"></div>
-      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-      <script>
-      var gitment = new Gitment({
-        owner: 'mooncaker816',
-        repo: 'mooncaker816.github.io',
-        oauth: {
-          client_id: '60b359cdeb3c484dbaa1',
-          client_secret: '7df3c9ab596e17a67e10b61a38c4f1c7ca976b63',
-        },
-      })
-      gitment.render('gitmentContainer')
-      </script>
+        <a href="/2017/12/12/Go In Action 读书笔记（三）/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count" data-xid="/2017/12/12/Go In Action 读书笔记（三）/" itemprop="commentCount"></span>
+          文章评论
+        </a>
       
-
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go-In-Action/">Go In Action</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go-map/">Go map</a></li></ul>
 
@@ -190,6 +178,9 @@
 </article>
 
 
+
+  <section id="comments" class="vcomment">
+  </section>
 
 </section>
       
@@ -354,6 +345,30 @@
 
 
 <script src="/js/script.js"></script>
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "urzxMG6IH6XwD3AIW0VH4lMb-gzGzoHsz",
+        appKey: "WPbRVjy6oFOvnxYJJx9uTRR9",
+        placeholder: "Just go go",
+        pageSize:'10',
+        avatar:'mm',
+        lang:'zh-cn'
+    });
+</script>
+
 
 </div>
 </body>

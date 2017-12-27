@@ -99,13 +99,16 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://mooncaker816.github.io/2017/08/14/hello-world/" data-id="cjbp5m9hl000l8nw51ck35hsq" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
+        <a data-url="https://mooncaker816.github.io/2017/08/14/hello-world/" data-id="cjbp7dafy000hfvw5ehvrmni6" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
       
 
       
-
       
-
+        <a href="/2017/08/14/hello-world/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count" data-xid="/2017/08/14/hello-world/" itemprop="commentCount"></span>
+          文章评论
+        </a>
+      
       
     </footer>
   </div>
@@ -284,6 +287,30 @@
 
 
 <script src="/js/script.js"></script>
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "urzxMG6IH6XwD3AIW0VH4lMb-gzGzoHsz",
+        appKey: "WPbRVjy6oFOvnxYJJx9uTRR9",
+        placeholder: "Just go go",
+        pageSize:'10',
+        avatar:'mm',
+        lang:'zh-cn'
+    });
+</script>
+
 
 </div>
 </body>

@@ -254,6 +254,25 @@
 
 <!-- 百度分享 end -->
 
+<!-- 评论 start -->
+
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: theme.pinglun_owner,
+  repo: theme.pinglun_repo,
+  oauth: {
+    client_id: theme.pinglun_client_id,
+    client_secret: theme.pinglun_client_secret,
+  },
+})
+gitment.render('container')
+</script>
+
+<!-- 评论 end -->
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 

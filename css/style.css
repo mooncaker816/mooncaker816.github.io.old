@@ -1248,7 +1248,7 @@ a.article-title:hover {
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
   color: #666;
-  font-size: 1.2em;
+  font-size: 2em;
 }
 .article-entry pre,
 .article-entry code {
@@ -1257,7 +1257,7 @@ a.article-title:hover {
 .article-entry code {
   background: #f0f0f0;
   text-shadow: 0 1px #fff;
-  font-size: 1.2em;
+  font-size: 2em;
   padding: 0 0.3em;
   border: 1px solid #dcdcdc;
   border-radius: 3px;
@@ -1283,7 +1283,7 @@ a.article-title:hover {
 }
 .article-entry .highlight figcaption {
   zoom: 1;
-  font-size: 1.2em;
+  font-size: 2em;
   color: #75715e;
   line-height: 1em;
   margin-bottom: 1em;
@@ -1339,7 +1339,7 @@ a.article-title:hover {
 .article-entry .gist .gist-file .gist-meta {
   background: #272822;
   color: #75715e;
-  font: 0.85em "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 2em "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;

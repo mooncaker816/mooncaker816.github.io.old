@@ -1253,7 +1253,7 @@ a.article-title:hover {
 .article-entry pre,
 .article-entry code {
   font-family: Inconsolata, "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 .article-entry code {
   background: #f0f0f0;

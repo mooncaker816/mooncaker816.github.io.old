@@ -21,6 +21,8 @@ func (*IntSet) Clear() // remove all elements from the set
 
 func (*IntSet) Copy() *IntSet // return a copy of the set
 
+<!-- more -->
+
 ### Ex 6.2 
 
 Deﬁne a variadic (*IntSet).AddAll(...int) method that allows a list of values to be added, such as s.AddAll(1, 2, 3).

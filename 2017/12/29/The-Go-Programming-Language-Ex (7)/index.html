@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Mooncaker816">
 <meta property="og:description" content="Ex 6.1Implement these additional methods: func (*IntSet) Len() int // return the number of elements  func (*IntSet) Remove(x int) //remove x from the set  func (*IntSet) Clear() // remove all elements">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-29T06:16:46.419Z">
+<meta property="og:updated_time" content="2017-12-29T07:07:17.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Go Programming Language Ex（7）">
 <meta name="twitter:description" content="Ex 6.1Implement these additional methods: func (*IntSet) Len() int // return the number of elements  func (*IntSet) Remove(x int) //remove x from the set  func (*IntSet) Clear() // remove all elements">
@@ -100,6 +100,7 @@
 <p>func (*IntSet) Remove(x int) //remove x from the set </p>
 <p>func (*IntSet) Clear() // remove all elements from the set </p>
 <p>func (<em>IntSet) Copy() </em>IntSet // return a copy of the set</p>
+<a id="more"></a>
 <h3 id="Ex-6-2"><a href="#Ex-6-2" class="headerlink" title="Ex 6.2"></a>Ex 6.2</h3><p>Deﬁne a variadic (*IntSet).AddAll(…int) method that allows a list of values to be added, such as s.AddAll(1, 2, 3).</p>
 <h3 id="Ex-6-3"><a href="#Ex-6-3" class="headerlink" title="Ex 6.3"></a>Ex 6.3</h3><p>(*IntSet).UnionWith computes the union of two sets using |, the word-parallel bitwise OR operator. Implement methods for IntersectWith, DifferenceWith, and SymmetricDifference for the corresponding set operations. (The symmetric difference of two sets contains the elements present in one set or the other but not both.)</p>
 <h3 id="Ex-6-4"><a href="#Ex-6-4" class="headerlink" title="Ex 6.4"></a>Ex 6.4</h3><p>Add a method Elems that returns a slice containing the elements of the set, suitable for iterating over with a range loop.</p>

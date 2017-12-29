@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>The Go Programming Language Ex（6） | Mooncaker816</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ex 5.1Change the findlinks program to traverse the n.FirstChild linked list using recursive calls to visit instead of a loop. 1234567891011121314151617181920212223242526272829303132333435363738package">
+<meta name="keywords" content="The Go Programming Language Ex,Go Func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Go Programming Language Ex（6）">
+<meta property="og:url" content="https://mooncaker816.github.io/2017/12/28/The-Go-Programming-Language-Ex (6)/index.html">
+<meta property="og:site_name" content="Mooncaker816">
+<meta property="og:description" content="Ex 5.1Change the findlinks program to traverse the n.FirstChild linked list using recursive calls to visit instead of a loop. 1234567891011121314151617181920212223242526272829303132333435363738package">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-28T08:42:08.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Go Programming Language Ex（6）">
+<meta name="twitter:description" content="Ex 5.1Change the findlinks program to traverse the n.FirstChild linked list using recursive calls to visit instead of a loop. 1234567891011121314151617181920212223242526272829303132333435363738package">
+  
+    <link rel="alternative" href="/atom.xml" title="Mooncaker816" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mooncaker816</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="mooncaker816.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-The-Go-Programming-Language-Ex (6)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/28/The-Go-Programming-Language-Ex (6)/" class="article-date">
+  <time datetime="2017-12-27T16:00:00.000Z" itemprop="datePublished">2017-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Golang/">Golang</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The Go Programming Language Ex（6）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Ex-5-1"><a href="#Ex-5-1" class="headerlink" title="Ex 5.1"></a>Ex 5.1</h3><p>Change the findlinks program to traverse the n.FirstChild linked list using recursive calls to visit instead of a loop.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"golang.org/x/net/html"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	doc, err := html.Parse(os.Stdin)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Fprintf(os.Stderr, <span class="string">"findlinks1: %v\n"</span>, err)</span><br><span class="line">		os.Exit(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, link := <span class="keyword">range</span> visit(<span class="literal">nil</span>, doc) &#123;</span><br><span class="line">		fmt.Println(link)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// visit appends to links each link found in n and returns the result.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">visit</span><span class="params">(links []<span class="keyword">string</span>, n *html.Node)</span> []<span class="title">string</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> n == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> links</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> n.Type == html.ElementNode &amp;&amp; n.Data == <span class="string">"a"</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> _, a := <span class="keyword">range</span> n.Attr &#123;</span><br><span class="line">				<span class="keyword">if</span> a.Key == <span class="string">"href"</span> &#123;</span><br><span class="line">					links = <span class="built_in">append</span>(links, a.Val)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		links = visit(links, n.FirstChild)</span><br><span class="line">		links = visit(links, n.NextSibling)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> links</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">$ ./ex1.7 http://www.baidu.com | ./ex5.1</span><br><span class="line">/</span><br><span class="line">javascript:;</span><br><span class="line">javascript:;</span><br><span class="line">javascript:;</span><br><span class="line">/</span><br><span class="line">javascript:;</span><br><span class="line">https://passport.baidu.com/v2/?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2F</span><br><span class="line">http://news.baidu.com</span><br><span class="line">http://www.hao123.com</span><br><span class="line">http://map.baidu.com</span><br><span class="line">http://v.baidu.com</span><br><span class="line">http://tieba.baidu.com</span><br><span class="line">http://xueshu.baidu.com</span><br><span class="line">https://passport.baidu.com/v2/?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2F</span><br><span class="line">http://www.baidu.com/gaoji/preferences.html</span><br><span class="line">http://www.baidu.com/more/</span><br><span class="line">http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=</span><br><span class="line">http://tieba.baidu.com/f?kw=&amp;fr=wwwt</span><br><span class="line">http://zhidao.baidu.com/q?ct=17&amp;pn=0&amp;tn=ikaslist&amp;rn=10&amp;word=&amp;fr=wwwt</span><br><span class="line">http://music.baidu.com/search?fr=ps&amp;ie=utf-8&amp;key=</span><br><span class="line">http://image.baidu.com/search/index?tn=baiduimage&amp;ps=1&amp;ct=201326592&amp;lm=-1&amp;cl=2&amp;nc=1&amp;ie=utf-8&amp;word=</span><br><span class="line">http://v.baidu.com/v?ct=301989888&amp;rn=20&amp;pn=0&amp;db=0&amp;s=25&amp;ie=utf-8&amp;word=</span><br><span class="line">http://map.baidu.com/m?word=&amp;fr=ps01000</span><br><span class="line">http://wenku.baidu.com/search?word=&amp;lm=0&amp;od=0&amp;ie=utf-8</span><br><span class="line">//www.baidu.com/more/</span><br><span class="line">//www.baidu.com/cache/sethelp/help.html</span><br><span class="line">http://home.baidu.com</span><br><span class="line">http://ir.baidu.com</span><br><span class="line">http://e.baidu.com/?refer=888</span><br><span class="line">http://www.baidu.com/duty/</span><br><span class="line">http://jianyi.baidu.com/</span><br><span class="line">http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-5-2"><a href="#Ex-5-2" class="headerlink" title="Ex 5.2"></a>Ex 5.2</h3><p>Write a function to populate a mapping from element names—p, div, span, and so on—to the number of elements with that name in an HTML document tree.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"golang.org/x/net/html"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	doc, err := html.Parse(os.Stdin)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Fprintf(os.Stderr, <span class="string">"findlinks1: %v\n"</span>, err)</span><br><span class="line">		os.Exit(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> check(m, doc) &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"%s:%d\n"</span>, k, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">check</span><span class="params">(m <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>, n *html.Node)</span> <span class="title">map</span>[<span class="title">string</span>]<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> n == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> m</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> n.Type == html.ElementNode &#123;</span><br><span class="line">			m[n.Data]++</span><br><span class="line">		&#125;</span><br><span class="line">		m = check(m, n.FirstChild)</span><br><span class="line">		m = check(m, n.NextSibling)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ ./ex1.7 http://www.baidu.com | ./ex5.2</span><br><span class="line">body:1</span><br><span class="line">img:2</span><br><span class="line">map:1</span><br><span class="line">area:1</span><br><span class="line">a:32</span><br><span class="line">i:3</span><br><span class="line">head:1</span><br><span class="line">title:1</span><br><span class="line">style:3</span><br><span class="line">ul:1</span><br><span class="line">meta:4</span><br><span class="line">link:11</span><br><span class="line">form:1</span><br><span class="line">span:5</span><br><span class="line">li:4</span><br><span class="line">p:3</span><br><span class="line">html:1</span><br><span class="line">script:13</span><br><span class="line">noscript:1</span><br><span class="line">div:21</span><br><span class="line">input:14</span><br><span class="line">b:2</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-5-5"><a href="#Ex-5-5" class="headerlink" title="Ex 5.5"></a>Ex 5.5</h3><p>Implement countWordsAndImages. (See Exercise 4.9 for word-splitting.)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bufio"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"golang.org/x/net/html"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	url := <span class="string">"http://www.baidu.com"</span></span><br><span class="line">	w, i, err := CountWordsAndImages(url)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">"CountWordsAndImages error: "</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"words = %d,images = %d\n"</span>, w, i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CountWordsAndImages</span><span class="params">(url <span class="keyword">string</span>)</span> <span class="params">(words, images <span class="keyword">int</span>, err error)</span></span> &#123;</span><br><span class="line">	resp, err := http.Get(url)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	doc, err := html.Parse(resp.Body)</span><br><span class="line">	resp.Body.Close()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		err = fmt.Errorf(<span class="string">"parsing HTML: %s"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	words, images = countWordsAndImages(doc)</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">countWordsAndImages</span><span class="params">(n *html.Node)</span> <span class="params">(words, images <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> n == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> n.Type == html.ElementNode &#123;</span><br><span class="line">			<span class="keyword">if</span> n.Data == <span class="string">"img"</span> &#123;</span><br><span class="line">				images++</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> n.Type == html.TextNode &#123;</span><br><span class="line">			scanner := bufio.NewScanner(strings.NewReader(n.Data))</span><br><span class="line">			scanner.Split(bufio.ScanWords)</span><br><span class="line">			<span class="keyword">for</span> scanner.Scan() &#123;</span><br><span class="line">				words++</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		w1, i1 := countWordsAndImages(n.FirstChild)</span><br><span class="line">		words += w1</span><br><span class="line">		images += i1</span><br><span class="line">		w2, i2 := countWordsAndImages(n.NextSibling)</span><br><span class="line">		words += w2</span><br><span class="line">		images += i2</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run countwi.go</span><br><span class="line">words = 2805,images = 2</span><br></pre></td></tr></table></figure>
+<h3 id="Ex-5-6"><a href="#Ex-5-6" class="headerlink" title="Ex 5.6"></a>Ex 5.6</h3><p>Modify the corner function in gopl.io/ch3/surface (§3.2) to use named results and a bare return statement.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	width, height = <span class="number">600</span>, <span class="number">320</span>            <span class="comment">// canvas size in pixels</span></span><br><span class="line">	cells         = <span class="number">100</span>                 <span class="comment">// number of grid cells</span></span><br><span class="line">	xyrange       = <span class="number">30.0</span>                <span class="comment">// axis ranges (-xyrange..+xyrange)</span></span><br><span class="line">	xyscale       = width / <span class="number">2</span> / xyrange <span class="comment">// pixels per x or y unit</span></span><br><span class="line">	zscale        = height * <span class="number">0.4</span>        <span class="comment">// pixels per z unit</span></span><br><span class="line">	angle         = math.Pi / <span class="number">6</span>         <span class="comment">// angle of x, y axes (=30°)</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sin30, cos30 = math.Sin(angle), math.Cos(angle) <span class="comment">// sin(30°), cos(30°)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//fmt.Printf("&lt;svg xmlns='http://www.w3.org/2000/svg' "+</span></span><br><span class="line">	f, err := os.Create(<span class="string">"test.svg"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">"create file error "</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Fprintf(f, <span class="string">"&lt;svg xmlns='http://www.w3.org/2000/svg' "</span>+</span><br><span class="line">		<span class="string">"style='stroke: grey; fill: white; stroke-width: 0.7' "</span>+</span><br><span class="line">		<span class="string">"width='%d' height='%d'&gt;"</span>, width, height)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; cells; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; cells; j++ &#123;</span><br><span class="line">			ax, ay := corner(i+<span class="number">1</span>, j)</span><br><span class="line">			bx, by := corner(i, j)</span><br><span class="line">			cx, cy := corner(i, j+<span class="number">1</span>)</span><br><span class="line">			dx, dy := corner(i+<span class="number">1</span>, j+<span class="number">1</span>)</span><br><span class="line">			fmt.Fprintf(f, <span class="string">"&lt;polygon points='%g,%g %g,%g %g,%g %g,%g'/&gt;\n"</span>,</span><br><span class="line">				ax, ay, bx, by, cx, cy, dx, dy)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Fprintln(f, <span class="string">"&lt;/svg&gt;"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">corner</span><span class="params">(i, j <span class="keyword">int</span>)</span> <span class="params">(sx, sy <span class="keyword">float64</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// Find point (x,y) at corner of cell (i,j).</span></span><br><span class="line">	x := xyrange * (<span class="keyword">float64</span>(i)/cells - <span class="number">0.5</span>)</span><br><span class="line">	y := xyrange * (<span class="keyword">float64</span>(j)/cells - <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Compute surface height z.</span></span><br><span class="line">	z := f(x, y)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Project (x,y,z) isometrically onto 2-D SVG canvas (sx,sy).</span></span><br><span class="line">	sx = width/<span class="number">2</span> + (x-y)*cos30*xyscale</span><br><span class="line">	sy = height/<span class="number">2</span> + (x+y)*sin30*xyscale - z*zscale</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(x, y <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">	r := math.Hypot(x, y) <span class="comment">// distance from (0,0)</span></span><br><span class="line">	<span class="keyword">return</span> math.Sin(r) / r</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      
+  <div class="article-statement">
+    <hr>  
+    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
+    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+  </div>
+
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://mooncaker816.github.io/2017/12/28/The-Go-Programming-Language-Ex (6)/" data-id="cjbrkr18v0000krw537beq9m0" class="article-share-link" data-share="baidu" data-title="The Go Programming Language Ex（6）">分享到</a>
+      
+
+      
+      
+        <a href="/2017/12/28/The-Go-Programming-Language-Ex (6)/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count" data-xid="/2017/12/28/The-Go-Programming-Language-Ex (6)/" itemprop="commentCount"></span>
+          文章评论
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go-Func/">Go Func</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/The-Go-Programming-Language-Ex/">The Go Programming Language Ex</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/29/The-Go-Programming-Language-Ex (7)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          The Go Programming Language Ex（7）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/24/The-Go-Programming-Language-Ex (5)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">The Go Programming Language Ex（5）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  <section id="comments" class="vcomment">
+  </section>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-BitMap/">Go BitMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Func/">Go Func</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-In-Action/">Go In Action</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-JSON/">Go JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Method/">Go Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-array/">Go array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-interface/">Go interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-map/">Go map</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-method/">Go method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-package/">Go package</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-slice/">Go slice</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-template/">Go template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-type/">Go type</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Go-Programming-Language-Ex/">The Go Programming Language Ex</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Go-BitMap/" style="font-size: 10px;">Go BitMap</a> <a href="/tags/Go-Func/" style="font-size: 10px;">Go Func</a> <a href="/tags/Go-In-Action/" style="font-size: 16.67px;">Go In Action</a> <a href="/tags/Go-JSON/" style="font-size: 10px;">Go JSON</a> <a href="/tags/Go-Method/" style="font-size: 10px;">Go Method</a> <a href="/tags/Go-array/" style="font-size: 10px;">Go array</a> <a href="/tags/Go-interface/" style="font-size: 10px;">Go interface</a> <a href="/tags/Go-map/" style="font-size: 13.33px;">Go map</a> <a href="/tags/Go-method/" style="font-size: 10px;">Go method</a> <a href="/tags/Go-package/" style="font-size: 10px;">Go package</a> <a href="/tags/Go-slice/" style="font-size: 13.33px;">Go slice</a> <a href="/tags/Go-template/" style="font-size: 10px;">Go template</a> <a href="/tags/Go-type/" style="font-size: 10px;">Go type</a> <a href="/tags/The-Go-Programming-Language-Ex/" style="font-size: 20px;">The Go Programming Language Ex</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/29/The-Go-Programming-Language-Ex (7)/">The Go Programming Language Ex（7）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/28/The-Go-Programming-Language-Ex (6)/">The Go Programming Language Ex（6）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/24/The-Go-Programming-Language-Ex (5)/">The Go Programming Language Ex（5）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/23/The-Go-Programming-Language-Ex (4)/">The Go Programming Language Ex（4）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/22/The-Go-Programming-Language-Ex (3)/">The Go Programming Language Ex（3）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="https://github.com/mooncaker816" target="_blank">我的github</a>
+          </li>
+        
+          <li>
+            <a href="https://coding.net/u/mooncaker816" target="_blank">我的coding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Mingle<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a><br/>
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "urzxMG6IH6XwD3AIW0VH4lMb-gzGzoHsz",
+        appKey: "WPbRVjy6oFOvnxYJJx9uTRR9",
+        placeholder: "来侃一侃~",
+        pageSize:'10',
+        avatar:'identicon',
+        lang:'zh-cn'
+    });
+</script>
+
+
+</div>
+</body>
+</html>

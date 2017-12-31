@@ -245,13 +245,13 @@ func (db database) delete(w http.ResponseWriter, req *http.Request) {
 }
 ```
 
-![list](http://oumnldfwl.bkt.clouddn.com/list item.png)
+![list](http://oumnldfwl.bkt.clouddn.com/list item.png?imageView2/0/h/200)
 
-![](http://oumnldfwl.bkt.clouddn.com/add item.png)
+![](http://oumnldfwl.bkt.clouddn.com/add item.png?imageView2/0/h/200)
 
-![](http://oumnldfwl.bkt.clouddn.com/update price.png)
+![](http://oumnldfwl.bkt.clouddn.com/update price.png?imageView2/0/h/200)
 
-![](http://oumnldfwl.bkt.clouddn.com/delete item.png)
+![](http://oumnldfwl.bkt.clouddn.com/delete item.png?imageView2/0/h/200)
 
 ### Ex 7.12
 

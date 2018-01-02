@@ -676,3 +676,255 @@ $ ./ex5.7 http://www.baidu.com
 &html.Node{Parent:(*html.Node)(0xc4201322a0), FirstChild:(*html.Node)(0xc4201336c0), LastChild:(*html.Node)(0xc4201336c0), PrevSibling:(*html.Node)(0xc4201335e0), NextSibling:(*html.Node)(0xc420133730), Type:0x3, DataAtom:0x6f905, Data:"style", Namespace:"", Attr:[]html.Attribute{html.Attribute{Namespace:"", Key:"data-for", Val:"result"}, html.Attribute{Namespace:"", Key:"id", Val:"css_index_result"}, html.Attribute{Namespace:"", Key:"type", Val:"text/css"}}}:
 ```
 
+### Ex 5.12
+
+The startElement and endElement functions in gopl.io/ch5/outline2 (§5.5) share a global variable, depth. Turn them into anonymous functions that share a variable local to the outline function.
+
+```go
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+// See page 133.
+
+// Outline prints the outline of an HTML document tree.
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+
+	"golang.org/x/net/html"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		outline(url)
+	}
+}
+
+func outline(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+	var depth int
+	startElement := func(n *html.Node) {
+		if n.Type == html.ElementNode {
+			fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
+			depth++
+		}
+	}
+
+	endElement := func(n *html.Node) {
+		if n.Type == html.ElementNode {
+			depth--
+			fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
+		}
+	}
+	//!+call
+	forEachNode(doc, startElement, endElement)
+	//!-call
+
+	return nil
+}
+
+//!+forEachNode
+// forEachNode calls the functions pre(x) and post(x) for each node
+// x in the tree rooted at n. Both functions are optional.
+// pre is called before the children are visited (preorder) and
+// post is called after (postorder).
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
+		pre(n)
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		forEachNode(c, pre, post)
+	}
+
+	if post != nil {
+		post(n)
+	}
+}
+```
+
+### Ex 5.13
+
+Modify crawl to make local copies of the pages it ﬁnds, creating directories as necessary. Don’t make copies of pages that come from a different domain. For example, if the original page comes from golang.org, save all ﬁles from there, but exclude ones from vimeo.com.
+
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"net/url"
+	"os"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/net/html"
+	"gopl.io/ch5/links"
+)
+
+// Extract makes an HTTP GET request to the specified URL, parses
+// the response as HTML, and returns the links in the HTML document.
+func Extract(urlstr string) ([]string, error) {
+	resp, err := http.Get(urlstr)
+	if err != nil {
+		return nil, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		resp.Body.Close()
+		return nil, fmt.Errorf("getting %s: %s", urlstr, resp.Status)
+	}
+	doc, err := html.Parse(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		return nil, fmt.Errorf("parsing %s as HTML: %v", urlstr, err)
+	}
+	var links []string
+	visitNode := func(n *html.Node) {
+		if n.Type == html.ElementNode && n.Data == "a" {
+			for _, a := range n.Attr {
+				if a.Key != "href" {
+					continue
+				}
+				link, err := resp.Request.URL.Parse(a.Val)
+				if err != nil {
+					continue // ignore bad URLs
+				}
+				links = append(links, link.String())
+			}
+		}
+	}
+	forEachNode(doc, visitNode, nil)
+	return links, nil
+}
+
+//!-Extract
+
+// Copied from gopl.io/ch5/outline2.
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
+		pre(n)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		forEachNode(c, pre, post)
+	}
+	if post != nil {
+		post(n)
+	}
+}
+
+func breadthFirst(f func(item string, host []string) []string, worklist []string) {
+	seen := make(map[string]bool)
+	host := make([]string, len(worklist))
+	for i, v := range worklist {
+		u, err := url.Parse(v)
+		if err != nil {
+			fmt.Println("initial url parse failed")
+			return
+		}
+		host[i] = u.Host
+	}
+	for len(worklist) > 0 {
+		items := worklist
+		worklist = nil
+		for _, item := range items {
+			if !seen[item] {
+				seen[item] = true
+				worklist = append(worklist, f(item, host)...)
+			}
+		}
+	}
+}
+
+//!-breadthFirst
+
+//!+crawl
+func crawl(urlstr string, sl []string) []string {
+	fmt.Println(urlstr)
+	copycontent(urlstr, sl)
+	list, err := links.Extract(urlstr)
+	if err != nil {
+		log.Print(err)
+	}
+	return list
+}
+
+func copycontent(s string, sl []string) {
+	u, err := url.Parse(s)
+	if err != nil {
+		fmt.Println("url parse failed")
+		return
+	}
+	for _, v := range sl {
+		if u.Host == v {
+			resp, err := http.Get(s)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			if resp.StatusCode != http.StatusOK {
+				resp.Body.Close()
+				return
+			}
+			//fmt.Println(path)
+			dir, _ := os.Getwd() //当前的目录
+			var filename, filepart, dirpart string
+			ns := strings.Count(u.Path, "/")
+			if ns == 0 || ns == 1 && len(u.Path) == 1 {
+				filepart = ""
+				filename = strconv.FormatInt(time.Now().Unix(), 10) + ".html"
+				dirpart = "/"
+			} else {
+				filepart = u.Path[strings.LastIndex(u.Path, "/")+1:]
+				dirpart = u.Path[:strings.LastIndex(u.Path, "/")+1]
+				if strings.Contains(filepart, ".") {
+					filename = filepart
+				} else {
+					dirpart = u.Path
+					filename = strconv.FormatInt(time.Now().Unix(), 10) + ".html"
+				}
+			}
+
+			fullpath := dir + "/" + u.Host + dirpart
+			_, err = os.Stat(fullpath)
+			if err != nil {
+				err = os.MkdirAll(fullpath, os.ModePerm) //在当前目录下生成md目录
+				if err != nil {
+					fmt.Println("create folder failed! ", fullpath, err)
+					return
+				}
+			}
+			filename = dir + "/" + u.Host + dirpart + "/" + filename
+			f, err := os.Create(filename)
+			if err != nil {
+				fmt.Println("create file error:", err, s)
+				return
+			}
+			_, err = io.Copy(f, resp.Body)
+			if err != nil {
+				fmt.Println("failed in copy")
+				return
+			}
+			resp.Body.Close()
+		}
+	}
+}
+func main() {
+	breadthFirst(crawl, os.Args[1:])
+}
+```
+

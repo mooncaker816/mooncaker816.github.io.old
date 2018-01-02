@@ -296,3 +296,383 @@ func f(x, y float64) float64 {
 }
 ```
 
+### Ex 5.7
+
+Develop startElement and endElement into a general HTML pre Print comment nodes, text nodes, and the attributes of each element (<a href='...'>). Use short forms like <img/> instead of <img></img> when an element has no children. Write a test to ensure that the output can be parsed successfully. (See Chapter 11.)
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+
+	"golang.org/x/net/html"
+)
+
+func main() {
+	for _, url := range os.Args[1:] {
+		outline(url)
+	}
+}
+
+func outline(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	forEachNode(doc, startElement, endElement)
+
+	return nil
+}
+
+func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
+	if pre != nil {
+		pre(n)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		forEachNode(c, pre, post)
+	}
+	if post != nil {
+		post(n)
+	}
+}
+
+var depth int
+
+func startElement(n *html.Node) {
+	if n.Type == html.ElementNode ||
+		n.Type == html.TextNode ||
+		n.Type == html.CommentNode {
+		if n.DataAtom != 0 { //去除无法识别标签的节点，如空白的textnode等
+			var attr string
+			for _, v := range n.Attr {
+				attr += " " + v.Key + "='" + v.Val + "'"
+			}
+			if n.FirstChild == nil {
+				fmt.Printf("%*s<%s/>\n", depth*2, "", n.Data)
+			} else {
+				fmt.Printf("%*s<%s%s>\n", depth*2, "", n.Data, attr)
+			}
+			depth++
+		}
+	}
+}
+func endElement(n *html.Node) {
+	if n.Type == html.ElementNode ||
+		n.Type == html.TextNode ||
+		n.Type == html.CommentNode {
+		if n.DataAtom != 0 {
+			depth--
+			if n.FirstChild != nil {
+				fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
+			}
+		}
+	}
+}
+```
+
+```bash
+$ ./ex5.7 http://gopl.io
+<html xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta/>
+    <title>
+    </title>
+    <script>
+    </script>
+    <link/>
+    <style>
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <a href='http://www.informit.com/store/go-programming-language-9780134190440'>
+              <img/>
+            </a>
+            <br/>
+            <div style='text-align: center'>
+              <a href='http://www.amazon.com/dp/0134190440'>
+                <img/>
+              </a>
+              <a href='http://www.informit.com/store/go-programming-language-9780134190440'>
+                <img/>
+              </a>
+              <a href='http://www.barnesandnoble.com/w/1121601944'>
+                <img/>
+              </a>
+            </div>
+            <br/>
+          </td>
+          <td width='500'>
+            <h1 class='center'>
+            </h1>
+            <p class='biblio center'>
+              <br/>
+              <br/>
+              <br/>
+              <tt>
+              </tt>
+              <tt>
+              </tt>
+              <tt>
+              </tt>
+            </p>
+            <div id='toc'>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h1>
+                        <a href='ch1.pdf'>
+                        </a>
+                      </h1>
+                      <h1>
+                        <a href='ch1.pdf'>
+                        </a>
+                      </h1>
+                      <h1>
+                        <a href='ch1.pdf'>
+                        </a>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                    </td>
+                    <td>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                      </h1>
+                      <h1>
+                        <a href='ch1.pdf'>
+                        </a>
+                      </h1>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan='2'>
+                      <h1>
+                        <a href='https://github.com/adonovan/gopl.io/'>
+                        </a>
+                        <a href='reviews.html'>
+                        </a>
+                        <a href='translations.html'>
+                        </a>
+                        <a href='errata.html'>
+                        </a>
+                      </h1>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class='bio'>
+              <a href='http://golang.org/s/oracle-user-manual'>
+                <code>
+                </code>
+              </a>
+              <a href='http://golang.org/lib/godoc/analysis/help.html'>
+                <code>
+                </code>
+              </a>
+              <a href='https://github.com/golang/tools/blob/master/refactor/eg/eg.go'>
+                <code>
+                </code>
+              </a>
+              <a href='https://github.com/golang/tools/blob/master/refactor/rename/rename.go'>
+                <code>
+                </code>
+              </a>
+            </p>
+            <p class='bio'>
+              <a href='http://www.amazon.com/dp/0131103628?tracking_id=disfordig-20'>
+              </a>
+              <a href='http://www.amazon.com/dp/020161586X?tracking_id=disfordig-20'>
+              </a>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+```
+
+- 遍历TextNode时，含有很多空节点（其实就是空格，也当成了一个节点），或许应该在parse阶段就抛弃这些不是节点的节点。本习题中，我暂时借用了元素节点的字段`DataAtom  atom.Atom`，若为0，则说明该节点标签无法识别。
+
+  >// A Node consists of a NodeType and some Data (tag name for element nodes,
+  >// content for text) and are part of a tree of Nodes. Element nodes may also
+  >// have a Namespace and contain a slice of Attributes. Data is unescaped, so
+  >// that it looks like "a<b" rather than "a&lt;b". For element nodes, DataAtom
+  >// is the atom for Data, or zero if Data is not a known tag name.
+
+### Ex 5.8
+
+Modify forEachNode so that the pre and post functions return a boolean re indicating whether to continue the traversal. Use it to write a function ElementByID with the following signature that ﬁnds the ﬁrst HTML element with the speciﬁed id attribute. The function should stop the traversal as soon as a match is found.
+
+`func ElementByID(doc *html.Node, id string) *html.Node`
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"golang.org/x/net/html"
+)
+
+var custID = "css_index_result"
+
+//var custID = "toc"
+
+func main() {
+	for _, url := range os.Args[1:] {
+		outline(url)
+	}
+}
+
+func outline(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	doc, err := html.Parse(resp.Body)
+	if err != nil {
+		return err
+	}
+	//forEachNode(doc, "", startElement, endElement)
+	fmt.Printf("%#v:\n", getElementByID(doc, custID))
+	return nil
+}
+
+func forEachNode(n *html.Node, id string, pre, post func(n *html.Node, id string) bool) *html.Node {
+	var rtn *html.Node
+	if pre != nil {
+		if !pre(n, id) {
+			rtn = n
+		}
+	}
+	for c := n.FirstChild; c != nil && rtn == nil; c = c.NextSibling {
+		rtn = forEachNode(c, id, pre, post)
+	}
+	if post != nil {
+		if !post(n, id) {
+			rtn = n
+		}
+	}
+	return rtn
+}
+
+var depth int
+
+func startElement(n *html.Node, id string) bool {
+	if n.Type == html.ElementNode ||
+		n.Type == html.TextNode ||
+		n.Type == html.CommentNode {
+		if n.DataAtom != 0 { //去除无法识别标签的节点，如空白的textnode等
+			var attr string
+			for _, v := range n.Attr {
+				attr += " " + v.Key + "='" + v.Val + "'"
+			}
+			if n.FirstChild == nil {
+				fmt.Printf("%*s<%s/>\n", depth*2, "", n.Data)
+			} else {
+				fmt.Printf("%*s<%s%s>\n", depth*2, "", n.Data, attr)
+			}
+			depth++
+		}
+		if n.Type == html.ElementNode {
+			for _, v := range n.Attr {
+				if v.Key == "id" && v.Val == id {
+					log.Printf("%#v\n", n)
+					return false
+				}
+			}
+		}
+	}
+	return true
+}
+func endElement(n *html.Node, id string) bool {
+	if n.Type == html.ElementNode ||
+		n.Type == html.TextNode ||
+		n.Type == html.CommentNode {
+		if n.DataAtom != 0 {
+			depth--
+			if n.FirstChild != nil {
+				fmt.Printf("%*s</%s>\n", depth*2, "", n.Data)
+			}
+		}
+	}
+	return true
+}
+
+func getElementByID(doc *html.Node, id string) *html.Node {
+	return forEachNode(doc, id, startElement, endElement)
+}
+```
+
+```bash
+$ ./ex5.7 http://www.baidu.com
+<html>
+  <head>
+    <meta/>
+    <meta/>
+    <meta/>
+    <meta/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <link/>
+    <title>
+    </title>
+    <style id='css_index' index='index' type='text/css'>
+    </style>
+    <style data-for='debug'>
+    </style>
+    <style data-for='result' id='css_index_result' type='text/css'>
+2018/01/02 17:53:11 &html.Node{Parent:(*html.Node)(0xc4201322a0), FirstChild:(*html.Node)(0xc4201336c0), LastChild:(*html.Node)(0xc4201336c0), PrevSibling:(*html.Node)(0xc4201335e0), NextSibling:(*html.Node)(0xc420133730), Type:0x3, DataAtom:0x6f905, Data:"style", Namespace:"", Attr:[]html.Attribute{html.Attribute{Namespace:"", Key:"data-for", Val:"result"}, html.Attribute{Namespace:"", Key:"id", Val:"css_index_result"}, html.Attribute{Namespace:"", Key:"type", Val:"text/css"}}}
+    </style>
+  </head>
+</html>
+&html.Node{Parent:(*html.Node)(0xc4201322a0), FirstChild:(*html.Node)(0xc4201336c0), LastChild:(*html.Node)(0xc4201336c0), PrevSibling:(*html.Node)(0xc4201335e0), NextSibling:(*html.Node)(0xc420133730), Type:0x3, DataAtom:0x6f905, Data:"style", Namespace:"", Attr:[]html.Attribute{html.Attribute{Namespace:"", Key:"data-for", Val:"result"}, html.Attribute{Namespace:"", Key:"id", Val:"css_index_result"}, html.Attribute{Namespace:"", Key:"type", Val:"text/css"}}}:
+```
+

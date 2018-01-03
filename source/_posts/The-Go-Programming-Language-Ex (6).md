@@ -6,7 +6,7 @@ categories:
 tags:
 - The Go Programming Language Ex
 - Go Func
-
+- Go crawler
 ---
 
 ### Ex 5.1
@@ -926,6 +926,5 @@ func copycontent(s string, sl []string) {
 func main() {
 	breadthFirst(crawl, os.Args[1:])
 }
-
 ```
 

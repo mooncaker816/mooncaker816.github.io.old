@@ -11,13 +11,7 @@ tags:
 
 ### bytes和strings函数比对
 
-<table>
-   <tr>
-​      <td>bytes</td>
-​      <td></td>
-​      <td>strings</td>
-​      <td></td>
-   </tr>
+<table><tr><td>bytes</td><td></td><td>strings</td><td></td></tr>
    <tr>
 ​      <td>函数签名</td>
 ​      <td>功能</td>

@@ -11,19 +11,8 @@ tags:
 
 ### bytes和strings函数比对
 
-<table><tr><td>bytes</td><td></td><td>strings</td><td></td></tr>
-   <tr>
-​      <td>函数签名</td>
-​      <td>功能</td>
-​      <td>函数签名</td>
-​      <td>功能</td>
-   </tr>
-   <tr>
-​      <td>func explode(s []byte, n int) [][]byte</td>
-​      <td>以每个utf8字符为单位，将前n个字符对应的[]byte型组成新的slice返回</td>
-​      <td>func explode(s string, n int) []string</td>
-​      <td>以每个utf8字符为单位，将前n个字符对应的string型组成新的slice返回</td>
-   </tr>
+<table><tr><td>bytes</td><td></td><td>strings</td><td></td></tr><tr><td>函数签名</td><td>功能</td><td>函数签名</td><td>功能</td></tr><tr><td>func explode(s []byte, n int) [][]byte</td><td>以每个utf8字符为单位，将前n个字符对应的[]byte型组成新的slice返回</td><td>func explode(s string, n int) []string</td><td>以每个utf8字符为单位，将前n个字符对应的string型组成新的slice返回</td></tr><table>
+
    <tr>
 ​      <td>func countGeneric(s, sep []byte) int</td>
 ​      <td>返回s中有几个sep，若sep为空，则返回sutf8.RuneCount(s) + 1</td>

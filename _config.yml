@@ -84,3 +84,7 @@ deploy:
     coding: git@git.coding.net:mooncaker816/mooncaker816.coding.me.git,master
   message: "blog update"
   #branch: master
+
+# hexo-filter-asciinema
+asciinema:
+  enable: true

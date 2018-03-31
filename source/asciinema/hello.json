@@ -1,26 +1,2814 @@
-{"version": 2, "timestamp": 1522459562, "height": 25, "width": 80, "env": {"SHELL": "/bin/bash", "TERM": "xterm"}}
-[0.015479, "o", "root@0c7b14ead036:~# "]
-[4.153296, "o", "w"]
-[4.286184, "o", "h"]
-[4.374645, "o", "o"]
-[5.019498, "o", "a"]
-[5.105598, "o", "m"]
-[5.434873, "o", "i"]
-[5.730486, "o", "\r\n"]
-[5.734231, "o", "root"]
-[5.734638, "o", "\r\n"]
-[5.735101, "o", "root@0c7b14ead036:~# "]
-[7.675691, "o", "w"]
-[7.824422, "o", "h"]
-[7.916586, "o", "o"]
-[8.193294, "o", "a"]
-[8.341223, "o", "m"]
-[8.653548, "o", "i"]
-[8.922412, "o", "\r\n"]
-[8.92582, "o", "root\r\n"]
-[8.927226, "o", "root@0c7b14ead036:~# "]
-[9.920394, "o", "e"]
-[10.278632, "o", "x"]
-[10.673166, "o", "i"]
-[10.858821, "o", "t"]
-[11.054377, "o", "\r\nexit\r\n"]
+{
+  "version": 1,
+  "width": 80,
+  "height": 24,
+  "duration": 233.438428,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.017941,
+      "\u001b[?1034hbash-3.2$ "
+    ],
+    [
+      1.797489,
+      "l"
+    ],
+    [
+      0.58719,
+      "s"
+    ],
+    [
+      0.374933,
+      " "
+    ],
+    [
+      0.132159,
+      "-"
+    ],
+    [
+      0.915955,
+      "l"
+    ],
+    [
+      0.180365,
+      "\r\n"
+    ],
+    [
+      0.009873,
+      "total 24\r\n"
+    ],
+    [
+      0.000334,
+      "-rw-r--r--  1 johnmulhausen  staff  477 Mar 14 00:23 Dockerfile\r\n-rw-r--r--  1 johnmulhausen  staff  623 Mar 14 00:21 app.py\r\n-rw-r--r--  1 johnmulhausen  staff   12 Mar 14 00:21 requirements.txt\r\n"
+    ],
+    [
+      0.000753,
+      "bash-3.2$ "
+    ],
+    [
+      2.1615,
+      "c"
+    ],
+    [
+      0.119292,
+      "a"
+    ],
+    [
+      0.069947,
+      "t"
+    ],
+    [
+      0.08645,
+      " "
+    ],
+    [
+      0.482623,
+      "r"
+    ],
+    [
+      0.127835,
+      "e"
+    ],
+    [
+      0.022046,
+      "q"
+    ],
+    [
+      0.073431,
+      "u"
+    ],
+    [
+      0.021221,
+      "i"
+    ],
+    [
+      0.135978,
+      "r"
+    ],
+    [
+      0.0505,
+      "e"
+    ],
+    [
+      0.089769,
+      "m"
+    ],
+    [
+      0.089584,
+      "e"
+    ],
+    [
+      0.082948,
+      "n"
+    ],
+    [
+      0.073443,
+      "t"
+    ],
+    [
+      0.05149,
+      "s"
+    ],
+    [
+      0.277644,
+      ".txt "
+    ],
+    [
+      0.431353,
+      "\r\n"
+    ],
+    [
+      0.006517,
+      "Flask\r\nRedis\r\n"
+    ],
+    [
+      0.000574,
+      "bash-3.2$ "
+    ],
+    [
+      1.742818,
+      "c"
+    ],
+    [
+      0.110823,
+      "l"
+    ],
+    [
+      0.056411,
+      "e"
+    ],
+    [
+      0.083923,
+      "a"
+    ],
+    [
+      0.044383,
+      "r"
+    ],
+    [
+      0.098789,
+      "\r\n"
+    ],
+    [
+      0.004621,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000484,
+      "bash-3.2$ "
+    ],
+    [
+      0.431097,
+      "c"
+    ],
+    [
+      0.088266,
+      "a"
+    ],
+    [
+      0.016134,
+      "t"
+    ],
+    [
+      0.093641,
+      " "
+    ],
+    [
+      0.345189,
+      "D"
+    ],
+    [
+      0.12932,
+      "o"
+    ],
+    [
+      0.084552,
+      "c"
+    ],
+    [
+      0.130161,
+      "k"
+    ],
+    [
+      0.01602,
+      "e"
+    ],
+    [
+      0.068332,
+      "r"
+    ],
+    [
+      0.137573,
+      "file "
+    ],
+    [
+      0.31919,
+      "\r\n"
+    ],
+    [
+      0.007178,
+      "# Using official python runtime base image\r\nFROM python:2.7-slim\r\n\r\n# Set the working directory to /app\r\nWORKDIR /app\r\n\r\n# Copy the host machine directoy's contents to /app in the container\r\nADD . /app\r\n\r\n# Install any needed packages specified in requirements.txt\r\nRUN pip install -r requirements.txt\r\n\r\n# Make port 80 available to the world outside this container\r\nEXPOSE 80\r\n\r\n# Define environment variable\r\nENV NAME World\r\n\r\n# Run app.py when the container launches\r\nCMD [\"python\", \"app.py\"]\r\n"
+    ],
+    [
+      0.000671,
+      "bash-3.2$ "
+    ],
+    [
+      2.586289,
+      "c"
+    ],
+    [
+      0.158808,
+      "l"
+    ],
+    [
+      0.112159,
+      "e"
+    ],
+    [
+      0.081491,
+      "a"
+    ],
+    [
+      0.074873,
+      "r"
+    ],
+    [
+      0.112873,
+      "\r\n"
+    ],
+    [
+      0.004026,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000685,
+      "bash-3.2$ "
+    ],
+    [
+      0.221891,
+      "c"
+    ],
+    [
+      0.105141,
+      "a"
+    ],
+    [
+      0.018752,
+      "t"
+    ],
+    [
+      0.075307,
+      " "
+    ],
+    [
+      0.168817,
+      "a"
+    ],
+    [
+      0.103873,
+      "p"
+    ],
+    [
+      0.157237,
+      "p"
+    ],
+    [
+      0.562517,
+      "."
+    ],
+    [
+      0.280352,
+      "p"
+    ],
+    [
+      0.094312,
+      "y"
+    ],
+    [
+      0.252842,
+      "\r\n"
+    ],
+    [
+      0.004329,
+      "from flask import Flask\r\nfrom redis import Redis, RedisError\r\nimport os\r\nimport socket\r\n\r\n# Connect to Redis\r\nredis = Redis(host=\"redis\", db=0)\r\n\r\napp = Flask(__name__)\r\n\r\n\r\n@app.route(\"/\")\r\ndef hello():\r\n    try:\r\n        visits = redis.incr('counter')\r\n    except RedisError:\r\n        visits = \"<i>cannot connect to Redis, counter disabled</i>\"\r\n\r\n    html = \"<h3>Hello {name}!</h3>\" \\\r\n           \"<b>Hostname:</b> {hostname}<br/>\" \\\r\n           \"<b>Visits:</b> {visits}\"\r\n    return html.format(name=os.getenv('NAME', \"world\"), hostname=socket.gethostname(), visits=visits)\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    app.run(host='0.0.0.0', port=80)\r\n"
+    ],
+    [
+      0.000524,
+      "bash-3.2$ "
+    ],
+    [
+      1.74278,
+      "c"
+    ],
+    [
+      0.133357,
+      "l"
+    ],
+    [
+      0.080849,
+      "e"
+    ],
+    [
+      0.055993,
+      "a"
+    ],
+    [
+      0.083871,
+      "r"
+    ],
+    [
+      0.106836,
+      "\r\n"
+    ],
+    [
+      0.003171,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000442,
+      "bash-3.2$ "
+    ],
+    [
+      0.41162,
+      "d"
+    ],
+    [
+      0.091222,
+      "o"
+    ],
+    [
+      0.071102,
+      "c"
+    ],
+    [
+      0.131096,
+      "k"
+    ],
+    [
+      0.015465,
+      "e"
+    ],
+    [
+      0.080168,
+      "r"
+    ],
+    [
+      0.186729,
+      " "
+    ],
+    [
+      0.136964,
+      "b"
+    ],
+    [
+      0.111107,
+      "u"
+    ],
+    [
+      0.031663,
+      "i"
+    ],
+    [
+      0.220795,
+      "l"
+    ],
+    [
+      0.064186,
+      "d"
+    ],
+    [
+      0.060547,
+      " "
+    ],
+    [
+      0.163218,
+      "="
+    ],
+    [
+      0.123661,
+      "t"
+    ],
+    [
+      0.360171,
+      "\b\u001b[K"
+    ],
+    [
+      0.174596,
+      "\b\u001b[K"
+    ],
+    [
+      0.213489,
+      "-"
+    ],
+    [
+      0.100909,
+      "t"
+    ],
+    [
+      0.12365,
+      " "
+    ],
+    [
+      0.143476,
+      "f"
+    ],
+    [
+      0.19276,
+      "r"
+    ],
+    [
+      0.153563,
+      "i"
+    ],
+    [
+      0.107433,
+      "e"
+    ],
+    [
+      0.124085,
+      "n"
+    ],
+    [
+      0.092149,
+      "d"
+    ],
+    [
+      0.161822,
+      "l"
+    ],
+    [
+      0.213146,
+      "y"
+    ],
+    [
+      0.240713,
+      "h"
+    ],
+    [
+      0.100281,
+      "e"
+    ],
+    [
+      0.185864,
+      "l"
+    ],
+    [
+      0.154786,
+      "l"
+    ],
+    [
+      0.203061,
+      "o"
+    ],
+    [
+      0.176925,
+      " "
+    ],
+    [
+      0.218915,
+      "."
+    ],
+    [
+      0.338354,
+      "\r\n"
+    ],
+    [
+      0.104906,
+      "Sending build context to Docker daemon 4.608 kB\r\r\r\n"
+    ],
+    [
+      0.119364,
+      "Step 1/7 : FROM python:2.7-slim\r\n"
+    ],
+    [
+      1.304247,
+      "2.7-slim: Pulling from library/python\r\n"
+    ],
+    [
+      0.004094,
+      "\r\n\u001b[1A\u001b[2K\r693502eb7dfb: Pulling fs layer \r\u001b[1B"
+    ],
+    [
+      0.000423,
+      "\r\n\u001b[1A\u001b[2K\r764f950e5832: Pulling fs layer \r\u001b[1B"
+    ],
+    [
+      0.000991,
+      "\r\n\u001b[1A\u001b[2K\r690360b5f953: Pulling fs layer \r\u001b[1B"
+    ],
+    [
+      0.534008,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 49.15 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.107317,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 244.9 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.130175,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 490.6 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.104868,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 687.2 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.052562,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 523.4 kB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.026087,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 179.6 kB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.022837,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 883.8 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.113895,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 1.031 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.086731,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 540.1 kB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.033237,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 1.228 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.087713,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 720.3 kB/16.4 MB\r"
+    ],
+    [
+      7.1e-05,
+      "\u001b[1B"
+    ],
+    [
+      0.002446,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 1.048 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.035598,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 1.425 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.061931,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 900.5 kB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.059246,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 1.621 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.042062,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 1.081 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.080308,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 1.867 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.055521,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 1.572 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.053887,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 2.063 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.004225,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 1.441 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.107186,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 1.621 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.007995,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading  2.26 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.134928,
+      "\u001b[2A\u001b[2K\r764f950e5832: "
+    ],
+    [
+      8e-05,
+      "Downloading 2.506 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.053276,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 2.096 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.002149,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 1.982 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.047753,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 2.702 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.145722,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 2.899 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.025486,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 2.342 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.085301,
+      "\u001b[2A\u001b[2K\r764f950e5832: Downloading 3.145 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.041831,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 2.523 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.018182,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 2.621 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.034077,
+      "\u001b[2A\u001b[2K\r764f950e5832: Verifying Checksum \r\u001b[2B\u001b[2A\u001b[2K\r764f950e5832: Download complete \r\u001b[2B"
+    ],
+    [
+      0.082659,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 2.883 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.142138,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 3.145 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.032075,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 3.243 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.145002,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 3.604 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.049272,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 3.669 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.069406,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 3.964 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.16827,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 4.325 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.008714,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 4.193 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.112589,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 4.685 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.092629,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 4.718 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.020653,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 5.046 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.148886,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 5.406 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.045475,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 5.242 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.065601,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 5.767 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.127866,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 6.127 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.015342,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 5.766 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.122632,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 6.487 MB/16.4 MB\r"
+    ],
+    [
+      4.5e-05,
+      "\u001b[1B"
+    ],
+    [
+      0.087809,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 6.291 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.044549,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 6.848 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.157064,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 7.208 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.023922,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 6.815 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.114296,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 7.749 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.106791,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 7.339 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.01365,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 8.109 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.109826,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  8.29 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.101589,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  8.65 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.000252,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 7.863 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.178472,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 9.011 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.022837,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 8.388 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.092769,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 9.371 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.102498,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 9.731 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.022545,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 8.912 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.125228,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 10.09 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.108152,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 9.436 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.002552,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 10.45 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.149214,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 10.99 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.015327,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 9.961 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.116679,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 11.17 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.088389,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 10.48 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.063206,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 11.89 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.198201,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 12.25 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.000691,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 11.01 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.135127,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  12.8 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.024625,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 11.53 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.093589,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 13.16 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.106522,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 13.34 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.028016,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 12.06 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.101919,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  13.7 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.094479,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 12.58 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.038564,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 14.24 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.162573,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  14.6 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.023368,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 13.11 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.097386,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 14.96 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.115517,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 13.63 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.018727,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 15.32 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.111816,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading  15.5 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.090949,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 14.15 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.085664,
+      "\u001b[1A\u001b[2K\r690360b5f953: Downloading 16.04 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.076695,
+      "\u001b[1A\u001b[2K\r690360b5f953: Verifying Checksum \r\u001b[1B\u001b[1A\u001b[2K\r690360b5f953: Download complete \r\u001b[1B"
+    ],
+    [
+      0.002903,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 14.68 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.135493,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading  15.2 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.193662,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 16.25 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.191235,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading  17.3 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.113253,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 17.82 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.189655,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 18.87 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.103274,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading  19.4 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.202356,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 20.45 MB/51.36 MB\r"
+    ],
+    [
+      4.4e-05,
+      "\u001b[3B"
+    ],
+    [
+      0.131146,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 20.97 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.230845,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 22.02 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.154511,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 23.07 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.100086,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 23.59 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.108671,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 24.12 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.173909,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 25.16 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.209523,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 26.21 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.197486,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 27.26 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.121142,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 27.79 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.172104,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 28.83 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.128447,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 29.36 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.152485,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 30.41 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.131193,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 30.93 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.213021,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 31.98 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.181342,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: "
+    ],
+    [
+      5.3e-05,
+      "Downloading 33.03 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.10816,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 33.55 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.136936,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 34.08 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.161062,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 35.13 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.172595,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 36.17 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.173874,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading  36.7 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.169643,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 37.75 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.234478,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading  38.8 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.209956,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 39.84 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.124844,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 40.89 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.127343,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 41.42 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.212211,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 42.47 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.151082,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 43.51 MB/51.36 MB\r"
+    ],
+    [
+      4e-05,
+      "\u001b[3B"
+    ],
+    [
+      0.142972,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 44.04 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.172608,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 45.09 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.175573,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 46.14 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.174913,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 47.19 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.160809,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 48.23 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.11676,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 48.76 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.1949,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 49.81 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.205259,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Downloading 50.86 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.094652,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Verifying Checksum \r\u001b[3B\u001b[3A\u001b[2K\r693502eb7dfb: Download complete \r\u001b[3B"
+    ],
+    [
+      0.167325,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 524.3 kB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.145079,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 2.097 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.115258,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 3.146 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.195917,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  3.67 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.115958,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 5.243 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.170129,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 6.816 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.104229,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 7.864 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.120558,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 8.913 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.117375,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 10.49 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.123778,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 12.06 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.222132,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 13.11 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.129951,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 14.16 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.120519,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  15.2 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.102455,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 16.25 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.162301,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 17.83 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.167887,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 18.87 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.137198,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  19.4 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.100237,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 19.92 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.148663,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 20.97 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.114485,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  21.5 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.11637,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 22.02 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.129252,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 23.07 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.106849,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 24.64 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.112947,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 26.21 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.141841,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 27.79 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.110985,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 30.93 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.121703,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 33.03 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.12283,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 35.65 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.112653,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 36.18 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.111883,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  36.7 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.141247,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 37.22 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.191046,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 38.27 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.16054,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting  38.8 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.201849,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 39.85 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.186696,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 40.89 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.117135,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 41.42 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.101435,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 42.47 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.133829,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 44.04 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.118274,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 45.09 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.161177,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 46.66 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.150976,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 47.71 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.127221,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 48.76 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.151384,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 49.81 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.524791,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 50.33 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.166351,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 50.86 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.201242,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Extracting 51.36 MB/51.36 MB\r\u001b[3B"
+    ],
+    [
+      0.47413,
+      "\u001b[3A\u001b[2K\r693502eb7dfb: Pull complete \r\u001b[3B"
+    ],
+    [
+      0.299239,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 65.54 kB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.105435,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 1.311 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.122094,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 1.769 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.09954,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 2.097 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.102575,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 3.146 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.032418,
+      "\u001b[2A\u001b[2K\r764f950e5832: Extracting 3.344 MB/3.344 MB\r\u001b[2B"
+    ],
+    [
+      0.500499,
+      "\u001b[2A\u001b[2K\r764f950e5832: Pull complete \r\u001b[2B"
+    ],
+    [
+      0.27399,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 196.6 kB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.112043,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 589.8 kB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.105377,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 1.376 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.119444,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 2.359 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.119473,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 3.146 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.104157,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 3.932 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.125171,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 5.112 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.113126,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 5.505 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.106955,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 6.488 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.186915,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 7.274 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.107454,
+      "\u001b[1A\u001b[2K\r690360b5f953: "
+    ],
+    [
+      0.000135,
+      "Extracting 8.454 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.104865,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 9.241 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.335146,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 9.437 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.144716,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 10.03 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.12241,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 10.81 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.161018,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 11.21 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.101486,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting  11.8 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.12326,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 12.58 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.112469,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 13.37 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.107177,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 13.57 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.116259,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 13.96 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.119451,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 14.75 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.131271,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 15.34 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.122728,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 15.53 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.094844,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting 15.93 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      0.102171,
+      "\u001b[1A\u001b[2K\r690360b5f953: Extracting  16.4 MB/16.4 MB\r\u001b[1B"
+    ],
+    [
+      1.186841,
+      "\u001b[1A\u001b[2K\r690360b5f953: Pull complete \r\u001b[1B"
+    ],
+    [
+      0.237549,
+      "Digest: sha256:443ec1c111e261000ce2994e0e89e5afdea6dfd8e73ff28cafd0d363b5598c00\r\n"
+    ],
+    [
+      0.1491,
+      "Status: Downloaded newer image for python:2.7-slim\r\n"
+    ],
+    [
+      0.002235,
+      " ---> 36fe09b80fe4\r\nStep 2/7 : WORKDIR /app\r\n"
+    ],
+    [
+      1.923716,
+      " ---> 1ab6eb9346a7\r\n"
+    ],
+    [
+      0.159864,
+      "Removing intermediate container 8057e21205fa\r\nStep 3/7 : ADD . /app\r\n"
+    ],
+    [
+      1.641833,
+      " ---> d7b6c39b76a4\r\n"
+    ],
+    [
+      0.173451,
+      "Removing intermediate container e155ce86415d\r\nStep 4/7 : RUN pip install -r requirements.txt\r\n"
+    ],
+    [
+      0.661749,
+      " ---> Running in 55e1f8187ee8\r\n"
+    ],
+    [
+      2.927616,
+      "Collecting Flask (from -r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.135124,
+      "  Downloading Flask-0.12-py2.py3-none-any.whl (82kB)\r\n"
+    ],
+    [
+      0.11521,
+      "Collecting Redis (from -r requirements.txt (line 2))\r\n"
+    ],
+    [
+      0.061909,
+      "  Downloading redis-2.10.5-py2.py3-none-any.whl (60kB)\r\n"
+    ],
+    [
+      0.082149,
+      "Collecting itsdangerous>=0.21 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.046915,
+      "  Downloading itsdangerous-0.24.tar.gz (46kB)\r\n"
+    ],
+    [
+      0.800243,
+      "Collecting Jinja2>=2.4 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.090257,
+      "  Downloading Jinja2-2.9.5-py2.py3-none-any.whl (340kB)\r\n"
+    ],
+    [
+      0.179629,
+      "Collecting Werkzeug>=0.7 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.089511,
+      "  Downloading Werkzeug-0.12-py2.py3-none-any.whl (312kB)\r\n"
+    ],
+    [
+      0.209119,
+      "Collecting click>=2.0 (from Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.069787,
+      "  Downloading click-6.7-py2.py3-none-any.whl (71kB)\r\n"
+    ],
+    [
+      0.085313,
+      "Collecting MarkupSafe>=0.23 (from Jinja2>=2.4->Flask->-r requirements.txt (line 1))\r\n"
+    ],
+    [
+      0.091293,
+      "  Downloading MarkupSafe-1.0.tar.gz\r\n"
+    ],
+    [
+      0.404831,
+      "Building wheels for collected packages: itsdangerous, MarkupSafe\r\n"
+    ],
+    [
+      0.003441,
+      "  Running setup.py bdist_wheel for itsdangerous: started\r\n"
+    ],
+    [
+      0.512853,
+      "  Running setup.py bdist_wheel for itsdangerous: finished with status 'done'\r\n"
+    ],
+    [
+      0.001957,
+      "  Stored in directory: /root/.cache/pip/wheels/fc/a8/66/24d655233c757e178d45dea2de22a04c6d92766abfb741129a\r\n"
+    ],
+    [
+      0.015261,
+      "  Running setup.py bdist_wheel for MarkupSafe: started\r\n"
+    ],
+    [
+      0.482343,
+      "  Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'\r\n"
+    ],
+    [
+      0.000778,
+      "  Stored in directory: /root/.cache/pip/wheels/88/a7/30/e39a54a87bcbe25308fa3ca64e8ddc75d9b3e5afa21ee32d57\r\n"
+    ],
+    [
+      0.011662,
+      "Successfully built itsdangerous MarkupSafe\r\n"
+    ],
+    [
+      0.001178,
+      "Installing collected packages: itsdangerous, MarkupSafe, Jinja2, Werkzeug, click, Flask, Redis\r\n"
+    ],
+    [
+      0.883436,
+      "Successfully installed Flask-0.12 Jinja2-2.9.5 MarkupSafe-1.0 Redis-2.10.5 Werkzeug-0.12 click-6.7 itsdangerous-0.24\r\n"
+    ],
+    [
+      3.816825,
+      " ---> 023f09bd6bf8\r\n"
+    ],
+    [
+      0.188713,
+      "Removing intermediate container 55e1f8187ee8\r\n"
+    ],
+    [
+      0.000275,
+      "Step 5/7 : EXPOSE 80\r\n"
+    ],
+    [
+      0.664641,
+      " ---> Running in 829dda38c2f9\r\n"
+    ],
+    [
+      0.827982,
+      " ---> e262b49cf660\r\n"
+    ],
+    [
+      0.139909,
+      "Removing intermediate container 829dda38c2f9\r\nStep 6/7 : ENV NAME World\r\n"
+    ],
+    [
+      0.668671,
+      " ---> Running in 0800857cc75f\r\n"
+    ],
+    [
+      0.832477,
+      " ---> 6d80cb25385d\r\n"
+    ],
+    [
+      0.162406,
+      "Removing intermediate container 0800857cc75f\r\n"
+    ],
+    [
+      7.2e-05,
+      "Step 7/7 : CMD python app.py\r\n"
+    ],
+    [
+      0.697329,
+      " ---> Running in 481825d93805\r\n"
+    ],
+    [
+      0.798655,
+      " ---> a0c54cf53be5\r\n"
+    ],
+    [
+      0.1517,
+      "Removing intermediate container 481825d93805\r\n"
+    ],
+    [
+      0.10251,
+      "Successfully built a0c54cf53be5\r\n"
+    ],
+    [
+      0.003422,
+      "bash-3.2$ "
+    ],
+    [
+      3.980757,
+      "c"
+    ],
+    [
+      0.077684,
+      "l"
+    ],
+    [
+      0.140254,
+      "e"
+    ],
+    [
+      0.052252,
+      "a"
+    ],
+    [
+      0.095581,
+      "r"
+    ],
+    [
+      0.16337,
+      "\r\n"
+    ],
+    [
+      0.005586,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000482,
+      "bash-3.2$ "
+    ],
+    [
+      1.005788,
+      "d"
+    ],
+    [
+      0.092245,
+      "o"
+    ],
+    [
+      0.071262,
+      "c"
+    ],
+    [
+      0.135326,
+      "k"
+    ],
+    [
+      0.04132,
+      "e"
+    ],
+    [
+      0.063879,
+      "r"
+    ],
+    [
+      0.06844,
+      " "
+    ],
+    [
+      0.732546,
+      "r"
+    ],
+    [
+      0.09877,
+      "u"
+    ],
+    [
+      0.068191,
+      "n"
+    ],
+    [
+      1.424747,
+      " "
+    ],
+    [
+      0.428894,
+      "-"
+    ],
+    [
+      0.262999,
+      "d"
+    ],
+    [
+      0.305362,
+      " "
+    ],
+    [
+      0.154091,
+      "-"
+    ],
+    [
+      0.348501,
+      "p"
+    ],
+    [
+      0.766682,
+      " "
+    ],
+    [
+      0.243017,
+      "4"
+    ],
+    [
+      0.1201,
+      "0"
+    ],
+    [
+      0.183215,
+      "0"
+    ],
+    [
+      0.167042,
+      "0"
+    ],
+    [
+      0.289305,
+      ":"
+    ],
+    [
+      0.504507,
+      "0"
+    ],
+    [
+      0.726507,
+      "\b\u001b[K"
+    ],
+    [
+      0.282896,
+      "8"
+    ],
+    [
+      0.120727,
+      "0"
+    ],
+    [
+      0.14799,
+      " "
+    ],
+    [
+      0.206216,
+      "f"
+    ],
+    [
+      0.160897,
+      "r"
+    ],
+    [
+      0.079856,
+      "i"
+    ],
+    [
+      0.096302,
+      "e"
+    ],
+    [
+      0.105972,
+      "n"
+    ],
+    [
+      0.076004,
+      "d"
+    ],
+    [
+      0.087823,
+      "l"
+    ],
+    [
+      0.201229,
+      "y"
+    ],
+    [
+      0.252905,
+      "h"
+    ],
+    [
+      0.127407,
+      "e"
+    ],
+    [
+      0.105701,
+      "l"
+    ],
+    [
+      0.145839,
+      "l"
+    ],
+    [
+      0.186217,
+      "o"
+    ],
+    [
+      1.360076,
+      "\r\n"
+    ],
+    [
+      0.739797,
+      "8fc990912a147f2d5ce30f7ddd8aa6117a0c827b4730f27d1c279487269c4616\r\n"
+    ],
+    [
+      1.175755,
+      "bash-3.2$ "
+    ],
+    [
+      1.583431,
+      "c"
+    ],
+    [
+      0.096249,
+      "u"
+    ],
+    [
+      0.133661,
+      "r"
+    ],
+    [
+      0.118994,
+      "l"
+    ],
+    [
+      0.434682,
+      " "
+    ],
+    [
+      0.204105,
+      "h"
+    ],
+    [
+      0.08789,
+      "t"
+    ],
+    [
+      0.129297,
+      "t"
+    ],
+    [
+      0.092394,
+      "p"
+    ],
+    [
+      0.276575,
+      ":"
+    ],
+    [
+      0.254744,
+      "/"
+    ],
+    [
+      0.188548,
+      "/"
+    ],
+    [
+      0.286494,
+      "l"
+    ],
+    [
+      0.177267,
+      "o"
+    ],
+    [
+      0.068851,
+      "c"
+    ],
+    [
+      0.039888,
+      "a"
+    ],
+    [
+      0.096174,
+      "l"
+    ],
+    [
+      0.186827,
+      "h"
+    ],
+    [
+      0.05949,
+      "o"
+    ],
+    [
+      0.182981,
+      "s"
+    ],
+    [
+      0.176838,
+      "t"
+    ],
+    [
+      0.690614,
+      ":"
+    ],
+    [
+      0.183321,
+      "4"
+    ],
+    [
+      0.106487,
+      "0"
+    ],
+    [
+      0.176353,
+      "0"
+    ],
+    [
+      0.16683,
+      "0"
+    ],
+    [
+      0.671449,
+      "/"
+    ],
+    [
+      0.685004,
+      "\r\n"
+    ],
+    [
+      0.040039,
+      "<h3>Hello World!</h3><b>Hostname:</b> 8fc990912a14<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>"
+    ],
+    [
+      0.001417,
+      "bash-3.2$ "
+    ],
+    [
+      4.379766,
+      "c"
+    ],
+    [
+      0.136782,
+      "l"
+    ],
+    [
+      0.152163,
+      "e"
+    ],
+    [
+      0.075341,
+      "a"
+    ],
+    [
+      0.080833,
+      "r"
+    ],
+    [
+      2.183295,
+      "\r\n"
+    ],
+    [
+      0.003471,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000507,
+      "bash-3.2$ "
+    ],
+    [
+      0.569212,
+      "d"
+    ],
+    [
+      0.04651,
+      "o"
+    ],
+    [
+      0.09101,
+      "c"
+    ],
+    [
+      0.099935,
+      "k"
+    ],
+    [
+      0.052479,
+      "e"
+    ],
+    [
+      0.064518,
+      "r"
+    ],
+    [
+      0.067932,
+      " "
+    ],
+    [
+      0.080143,
+      "p"
+    ],
+    [
+      0.083984,
+      "s"
+    ],
+    [
+      0.127482,
+      "\r\n"
+    ],
+    [
+      0.033241,
+      "CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES\r\n8fc990912a14        friendlyhello       \"python app.py\"     18 seconds ago      Up 16 seconds       0.0.0.0:4000->80/tcp   nervous_heisenberg\r\n"
+    ],
+    [
+      0.00332,
+      "bash-3.2$ "
+    ],
+    [
+      5.886184,
+      "d"
+    ],
+    [
+      0.117698,
+      "o"
+    ],
+    [
+      0.079368,
+      "c"
+    ],
+    [
+      0.107485,
+      "k"
+    ],
+    [
+      0.063837,
+      "e"
+    ],
+    [
+      0.060384,
+      "r"
+    ],
+    [
+      0.048062,
+      " "
+    ],
+    [
+      0.151492,
+      "s"
+    ],
+    [
+      0.079972,
+      "t"
+    ],
+    [
+      0.059477,
+      "o"
+    ],
+    [
+      0.059956,
+      "p"
+    ],
+    [
+      0.060826,
+      " "
+    ],
+    [
+      0.24293,
+      "8f"
+    ],
+    [
+      3.6e-05,
+      "c9909"
+    ],
+    [
+      2.5e-05,
+      "12"
+    ],
+    [
+      2.5e-05,
+      "a1"
+    ],
+    [
+      2.1e-05,
+      "4"
+    ],
+    [
+      0.602966,
+      "\r\n"
+    ],
+    [
+      11.196473,
+      "8fc990912a14\r\n"
+    ],
+    [
+      0.003779,
+      "bash-3.2$ "
+    ],
+    [
+      1.823267,
+      "c"
+    ],
+    [
+      0.186758,
+      "l"
+    ],
+    [
+      0.175737,
+      "e"
+    ],
+    [
+      0.055048,
+      "a"
+    ],
+    [
+      0.112645,
+      "r"
+    ],
+    [
+      0.147461,
+      "\r\n"
+    ],
+    [
+      0.005904,
+      "\u001b[H\u001b[2J"
+    ],
+    [
+      0.000357,
+      "bash-3.2$ "
+    ],
+    [
+      0.371284,
+      "d"
+    ],
+    [
+      0.0881,
+      "o"
+    ],
+    [
+      0.068278,
+      "c"
+    ],
+    [
+      0.127791,
+      "k"
+    ],
+    [
+      0.068015,
+      "e"
+    ],
+    [
+      0.054925,
+      "r"
+    ],
+    [
+      0.061229,
+      " "
+    ],
+    [
+      0.151695,
+      "l"
+    ],
+    [
+      0.209703,
+      "o"
+    ],
+    [
+      0.155545,
+      "g"
+    ],
+    [
+      0.076108,
+      "i"
+    ],
+    [
+      0.084107,
+      "n"
+    ],
+    [
+      0.42992,
+      "\r\n"
+    ],
+    [
+      0.056661,
+      "Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.\r\nUsername (johndmulhausen): "
+    ],
+    [
+      2.051928,
+      "j"
+    ],
+    [
+      0.125041,
+      "o"
+    ],
+    [
+      0.088232,
+      "h"
+    ],
+    [
+      0.159902,
+      "n"
+    ],
+    [
+      0.083905,
+      "d"
+    ],
+    [
+      0.099672,
+      "m"
+    ],
+    [
+      0.144022,
+      "u"
+    ],
+    [
+      0.188323,
+      "l"
+    ],
+    [
+      0.051981,
+      "h"
+    ],
+    [
+      0.194037,
+      "u"
+    ],
+    [
+      0.072884,
+      "s"
+    ],
+    [
+      0.339299,
+      "\b \b"
+    ],
+    [
+      0.181887,
+      "\b \b"
+    ],
+    [
+      0.09688,
+      "a"
+    ],
+    [
+      0.176518,
+      "u"
+    ],
+    [
+      0.091474,
+      "s"
+    ],
+    [
+      0.072972,
+      "e"
+    ],
+    [
+      0.095268,
+      "n"
+    ],
+    [
+      0.670946,
+      "\r\n"
+    ],
+    [
+      3.9e-05,
+      "Password: "
+    ],
+    [
+      3.208868,
+      "\r\n"
+    ],
+    [
+      1.124212,
+      "Login Succeeded\r\n"
+    ],
+    [
+      0.002689,
+      "bash-3.2$ "
+    ],
+    [
+      2.25034,
+      "d"
+    ],
+    [
+      0.096355,
+      "o"
+    ],
+    [
+      0.075687,
+      "c"
+    ],
+    [
+      0.119362,
+      "k"
+    ],
+    [
+      0.052407,
+      "e"
+    ],
+    [
+      0.055736,
+      "r"
+    ],
+    [
+      0.098907,
+      " "
+    ],
+    [
+      1.378202,
+      "t"
+    ],
+    [
+      0.146871,
+      "a"
+    ],
+    [
+      0.131963,
+      "g"
+    ],
+    [
+      0.201238,
+      " "
+    ],
+    [
+      1.973715,
+      "f"
+    ],
+    [
+      0.095886,
+      "r"
+    ],
+    [
+      0.160889,
+      "i"
+    ],
+    [
+      0.162976,
+      "e"
+    ],
+    [
+      0.125837,
+      "n"
+    ],
+    [
+      0.099454,
+      "d"
+    ],
+    [
+      0.119711,
+      "l"
+    ],
+    [
+      0.108399,
+      "y"
+    ],
+    [
+      0.493778,
+      "h"
+    ],
+    [
+      0.058707,
+      "e"
+    ],
+    [
+      0.139183,
+      "l"
+    ],
+    [
+      0.154912,
+      "l"
+    ],
+    [
+      0.18519,
+      "o"
+    ],
+    [
+      0.112306,
+      " "
+    ],
+    [
+      0.358832,
+      "j"
+    ],
+    [
+      0.091654,
+      "o"
+    ],
+    [
+      0.119644,
+      "h"
+    ],
+    [
+      0.203506,
+      "n"
+    ],
+    [
+      0.163974,
+      "d"
+    ],
+    [
+      0.09546,
+      "m"
+    ],
+    [
+      0.136599,
+      "u"
+    ],
+    [
+      0.205829,
+      "l"
+    ],
+    [
+      0.088415,
+      "h"
+    ],
+    [
+      0.051403,
+      "a"
+    ],
+    [
+      0.127243,
+      "u"
+    ],
+    [
+      0.063883,
+      "s"
+    ],
+    [
+      0.095709,
+      "e"
+    ],
+    [
+      0.083697,
+      "n"
+    ],
+    [
+      0.225995,
+      "/"
+    ],
+    [
+      0.204398,
+      "g"
+    ],
+    [
+      0.112098,
+      "e"
+    ],
+    [
+      0.088288,
+      "t"
+    ],
+    [
+      0.104266,
+      "-"
+    ],
+    [
+      0.438481,
+      "s"
+    ],
+    [
+      0.155824,
+      "t"
+    ],
+    [
+      0.12425,
+      "a"
+    ],
+    [
+      0.100823,
+      "r"
+    ],
+    [
+      0.071457,
+      "t"
+    ],
+    [
+      0.140135,
+      "e"
+    ],
+    [
+      0.189669,
+      "d"
+    ],
+    [
+      1.575673,
+      "-"
+    ],
+    [
+      0.717879,
+      "\b\u001b[K"
+    ],
+    [
+      0.356583,
+      ":"
+    ],
+    [
+      1.433777,
+      "p"
+    ],
+    [
+      0.067349,
+      "a"
+    ],
+    [
+      0.076821,
+      "r"
+    ],
+    [
+      0.079999,
+      "t"
+    ],
+    [
+      0.187825,
+      "1"
+    ],
+    [
+      2.252122,
+      "\r\n"
+    ],
+    [
+      0.137063,
+      "bash-3.2$ "
+    ],
+    [
+      1.409589,
+      "d"
+    ],
+    [
+      0.108886,
+      "o"
+    ],
+    [
+      0.09877,
+      "c"
+    ],
+    [
+      0.115746,
+      "k"
+    ],
+    [
+      0.080705,
+      "e"
+    ],
+    [
+      0.092414,
+      "r"
+    ],
+    [
+      0.063742,
+      " "
+    ],
+    [
+      0.204769,
+      "p"
+    ],
+    [
+      0.199214,
+      "u"
+    ],
+    [
+      0.091742,
+      "s"
+    ],
+    [
+      0.09584,
+      "h"
+    ],
+    [
+      0.088013,
+      " "
+    ],
+    [
+      0.159533,
+      "j"
+    ],
+    [
+      0.106652,
+      "o"
+    ],
+    [
+      0.112849,
+      "h"
+    ],
+    [
+      0.148262,
+      "n"
+    ],
+    [
+      0.077059,
+      "d"
+    ],
+    [
+      0.104993,
+      "m"
+    ],
+    [
+      0.124308,
+      "u"
+    ],
+    [
+      0.20379,
+      "l"
+    ],
+    [
+      0.087331,
+      "h"
+    ],
+    [
+      0.104301,
+      "a"
+    ],
+    [
+      0.08322,
+      "u"
+    ],
+    [
+      0.113016,
+      "s"
+    ],
+    [
+      0.107928,
+      "e"
+    ],
+    [
+      0.076054,
+      "n"
+    ],
+    [
+      0.84367,
+      "/"
+    ],
+    [
+      0.497152,
+      "g"
+    ],
+    [
+      0.088136,
+      "e"
+    ],
+    [
+      0.11057,
+      "t"
+    ],
+    [
+      0.078411,
+      "-"
+    ],
+    [
+      0.151199,
+      "s"
+    ],
+    [
+      0.112902,
+      "t"
+    ],
+    [
+      0.091566,
+      "a"
+    ],
+    [
+      0.271452,
+      "r"
+    ],
+    [
+      0.107806,
+      "t"
+    ],
+    [
+      0.168841,
+      "e"
+    ],
+    [
+      0.193429,
+      "d"
+    ],
+    [
+      0.327766,
+      ":"
+    ],
+    [
+      0.386113,
+      "p"
+    ],
+    [
+      0.112966,
+      "a"
+    ],
+    [
+      0.106995,
+      "r"
+    ],
+    [
+      0.07988,
+      "t"
+    ],
+    [
+      0.228619,
+      "1"
+    ],
+    [
+      0.805105,
+      "\r\n"
+    ],
+    [
+      0.061713,
+      "The push refers to a repository [docker.io/johndmulhausen/get-started]\r\n"
+    ],
+    [
+      0.339334,
+      "\r\n\u001b[1A\u001b[2K\r53a2a2ca66ed: Preparing \r\u001b[1B"
+    ],
+    [
+      4.9e-05,
+      "\r\n\u001b[1A\u001b[2K\r7fc09df0beb7: Preparing \r\u001b[1B"
+    ],
+    [
+      4.2e-05,
+      "\r\n\u001b[1A\u001b[2K\raa8a7e00f4b9: Preparing \r\u001b[1B"
+    ],
+    [
+      2.8e-05,
+      "\r\n\u001b[1A\u001b[2K\r1376eab3ff0b: Preparing \r\u001b[1B"
+    ],
+    [
+      0.000745,
+      "\r\n\u001b[1A\u001b[2K\r7f1dc38dfbf4: Preparing \r\u001b[1B\r\n\u001b[1A\u001b[2K\rd17d48b2382a: Preparing \r\u001b[1B"
+    ],
+    [
+      0.002666,
+      "\u001b[1A\u001b[2K\rd17d48b2382a: Waiting \r\u001b[1B"
+    ],
+    [
+      0.841065,
+      "\u001b[5A\u001b[2K\r7fc09df0beb7: Pushing    512 B/1.112 kB\r\u001b[5B"
+    ],
+    [
+      0.001319,
+      "\u001b[5A\u001b[2K\r7fc09df0beb7: Pushing  5.12 kB\r\u001b[5B"
+    ],
+    [
+      0.479545,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 138.2 kB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.285708,
+      "\u001b[4A\u001b[2K\raa8a7e00f4b9: Pushing 1.536 kB\r\u001b[4B"
+    ],
+    [
+      0.185656,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 643.1 kB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.240414,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 793.1 kB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.088336,
+      "\u001b[2A\u001b[2K\r7f1dc38dfbf4: Mounted from library/python \r\u001b[2B"
+    ],
+    [
+      0.014156,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 1.453 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.108555,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: "
+    ],
+    [
+      4.8e-05,
+      "Pushing 2.334 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.107029,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 3.348 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.109667,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 4.528 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.00725,
+      "\u001b[3A\u001b[2K\r1376eab3ff0b: Mounted from library/python \r\u001b[3B"
+    ],
+    [
+      0.130795,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 5.444 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.128521,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 6.226 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.115819,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 6.609 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.131813,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 7.376 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.10784,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 7.793 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.10639,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 8.541 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.109241,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing  9.61 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.106527,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 10.93 MB/11.81 MB\r\u001b[6B"
+    ],
+    [
+      0.113444,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 11.97 MB\r\u001b[6B"
+    ],
+    [
+      0.063628,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushing 12.45 MB\r\u001b[6B"
+    ],
+    [
+      0.326951,
+      "\u001b[5A\u001b[2K\r7fc09df0beb7: Pushed \r\u001b[5B"
+    ],
+    [
+      0.363344,
+      "\u001b[1A\u001b[2K\rd17d48b2382a: Mounted from library/python \r\u001b[1B"
+    ],
+    [
+      0.99739,
+      "\u001b[4A\u001b[2K\raa8a7e00f4b9: Pushed \r\u001b[4B"
+    ],
+    [
+      0.638469,
+      "\u001b[6A\u001b[2K\r53a2a2ca66ed: Pushed \r\u001b[6B"
+    ],
+    [
+      4.42657,
+      "part1: digest: sha256:7799210bcadf59340064d9a6bc1ca7a3443828d9ad5764962f42679a75a37b1f size: 1576\r\n"
+    ]
+  ]
+}

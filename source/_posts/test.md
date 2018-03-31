@@ -1,7 +1,7 @@
 Test only
 
 ```
-[@asciinema](/asciinema/hello)
+[@asciinema](/asciinema/hello.json)
 ```
 
 update

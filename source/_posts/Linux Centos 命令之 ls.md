@@ -1,3 +1,16 @@
+---
+title: Linux Centos 命令之 ls
+date: 2018-04-21 11:50:00
+categories:
+- Linux
+tags:
+- Centos
+---
+
+#Linux Centos 命令之 ls
+
+<!-- more -->
+
 ```bash
 Usage: ls [OPTION]... [FILE]...
 List information about the FILEs (the current directory by default).
@@ -147,7 +160,5 @@ drwxr-xr-x:
 常用文件类型：（-普通文件，d 目录，l 软链接文件）
 
 权限设置：rwxr-xr-x (拥有者权限 rwx，所属组权限r-x，其他权限r-x)
-
-https://asciinema.org/a/F8v4bzzzs8uLBUHNO1rOCcSHi
 
 {% asciinema F8v4bzzzs8uLBUHNO1rOCcSHi %}

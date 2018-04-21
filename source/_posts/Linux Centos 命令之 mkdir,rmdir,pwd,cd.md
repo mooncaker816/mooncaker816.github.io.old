@@ -37,7 +37,7 @@ Mandatory arguments to long options are mandatory for short options too.
 
 -v（verbose）： 打印出每个创建的目录
 
-1. 递归创建目录
+- 递归创建目录
 
 ```bash
 [root@78063f0fe2e8 ~]# mkdir -pv /tmp/test1/test2/test3
@@ -46,7 +46,7 @@ mkdir: created directory ‘/tmp/test1/test2’
 mkdir: created directory ‘/tmp/test1/test2/test3’
 ```
 
-2. 目录的权限由 umask 决定
+- 目录的权限由 umask 决定
 
 ```bash
 [root@78063f0fe2e8 ~]# umask
@@ -60,7 +60,7 @@ drwxr-xr-x 3 root root 4096 Apr 21 05:01 test2
 
 022是指对应三个组别分别要减去的权限分数，777-022=755=（rwxr-xr-x）
 
-3. 指定创建权限为711的目录
+- 指定创建权限为711的目录
 
 ```bash
 [root@78063f0fe2e8 ~]# mkdir /tmp/mingle -m 711

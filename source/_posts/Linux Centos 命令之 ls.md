@@ -7,11 +7,8 @@ tags:
 - Centos
 ---
 
-#Linux Centos 命令之 ls
-
-<!-- more -->
-
 ###Usage:
+<!-- more -->
 
 ```bash
 Usage: ls [OPTION]... [FILE]...

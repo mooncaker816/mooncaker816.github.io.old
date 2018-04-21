@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux Centos 命令之 touch,cat,tac,more,less | Mooncaker816</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="touch -  创建空文件，修改时间">
+<meta name="keywords" content="Centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Centos 命令之 touch,cat,tac,more,less">
+<meta property="og:url" content="https://mooncaker816.github.io/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/index.html">
+<meta property="og:site_name" content="Mooncaker816">
+<meta property="og:description" content="touch -  创建空文件，修改时间">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-21T08:44:37.148Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Centos 命令之 touch,cat,tac,more,less">
+<meta name="twitter:description" content="touch -  创建空文件，修改时间">
+  
+    <link rel="alternative" href="/atom.xml" title="Mooncaker816" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Mooncaker816</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="mooncaker816.github.io">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Linux Centos 命令之 touch,cat,tac,more,less" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/" class="article-date">
+  <time datetime="2018-04-21T05:50:00.000Z" itemprop="datePublished">2018-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux Centos 命令之 touch,cat,tac,more,less
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="touch-创建空文件，修改时间"><a href="#touch-创建空文件，修改时间" class="headerlink" title="touch -  创建空文件，修改时间"></a>touch -  创建空文件，修改时间</h2><a id="more"></a>
+<h3 id="Usage："><a href="#Usage：" class="headerlink" title="Usage："></a>Usage：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Usage: touch [OPTION]... FILE...</span><br><span class="line">Update the access and modification <span class="built_in">times</span> of each FILE to the current time.</span><br><span class="line"></span><br><span class="line">A FILE argument that does not exist is created empty, unless -c or -h</span><br><span class="line">is supplied.</span><br><span class="line"></span><br><span class="line">A FILE argument string of - is handled specially and causes touch to</span><br><span class="line">change the <span class="built_in">times</span> of the file associated with standard output.</span><br><span class="line"></span><br><span class="line">Mandatory arguments to long options are mandatory <span class="keyword">for</span> short options too.</span><br><span class="line">  -a                     change only the access time</span><br><span class="line">  -c, --no-create        <span class="keyword">do</span> not create any files</span><br><span class="line">  -d, --date=STRING      parse STRING and use it instead of current time</span><br><span class="line">  -f                     (ignored)</span><br><span class="line">  -h, --no-dereference   affect each symbolic link instead of any referenced</span><br><span class="line">                         file (useful only on systems that can change the</span><br><span class="line">                         timestamps of a symlink)</span><br><span class="line">  -m                     change only the modification time</span><br><span class="line">  -r, --reference=FILE   use this file<span class="string">'s times instead of current time</span></span><br><span class="line"><span class="string">  -t STAMP               use [[CC]YY]MMDDhhmm[.ss] instead of current time</span></span><br><span class="line"><span class="string">      --time=WORD        change the specified time:</span></span><br><span class="line"><span class="string">                           WORD is access, atime, or use: equivalent to -a</span></span><br><span class="line"><span class="string">                           WORD is modify or mtime: equivalent to -m</span></span><br><span class="line"><span class="string">      --help     display this help and exit</span></span><br><span class="line"><span class="string">      --version  output version information and exit</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Note that the -d and -t options accept different time-date formats.</span></span><br></pre></td></tr></table></figure>
+<p>mtime ：modification time （默认）</p>
+<p>文件的内容被修改时会更新</p>
+<p>ctime ：status time</p>
+<p>文件的属性或权限被修改时会更新</p>
+<p>atime ： access time</p>
+<p>文件的内容被读取时会更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@78063f0fe2e8 etc]<span class="comment"># ls -l login.defs</span></span><br><span class="line">-rw-r--r-- 1 root root 2028 Nov  4  2016 login.defs</span><br><span class="line">[root@78063f0fe2e8 etc]<span class="comment"># ls -l login.defs --time=atime</span></span><br><span class="line">-rw-r--r-- 1 root root 2028 Nov  4  2016 login.defs</span><br><span class="line">[root@78063f0fe2e8 etc]<span class="comment"># ls -l login.defs --time=ctime</span></span><br><span class="line">-rw-r--r-- 1 root root 2028 Apr 20 14:19 login.defs</span><br></pre></td></tr></table></figure>
+<h3 id="常用选项："><a href="#常用选项：" class="headerlink" title="常用选项："></a>常用选项：</h3><p>-a（access） ：仅修改访问时间</p>
+<p>-c（）：仅修改文件时间，若文件不存在则<strong>不</strong>创建新文件</p>
+<p>-m（modification）： 仅修改 mtime</p>
+<p>-t （time）：想要修改的时间[YYMMDDhhmm]</p>
+<p>-d（date）：修改的日期</p>
+<ul>
+<li>新建空文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2<span class="comment"># cd /tmp</span></span><br><span class="line">sh-4.2<span class="comment"># touch testtouch</span></span><br><span class="line">sh-4.2<span class="comment"># ls -l testtouch</span></span><br><span class="line">-rw-r--r-- 1 root root 0 Apr 21 07:52 testtouch</span><br><span class="line">sh-4.2<span class="comment"># ls -l testtouch --time=atime</span></span><br><span class="line">-rw-r--r-- 1 root root 0 Apr 21 07:52 testtouch</span><br><span class="line">sh-4.2<span class="comment"># ls -l testtouch --time=ctime</span></span><br><span class="line">-rw-r--r-- 1 root root 0 Apr 21 07:52 testtouch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改时间</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2<span class="comment"># cp -a ~/.bashrc bashrc</span></span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Dec 29  2013 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=atime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Dec 29  2013 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=ctime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Apr 21 07:53 bashrc</span><br><span class="line">sh-4.2<span class="comment"># touch -d "2 days ago" bashrc</span></span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Apr 19 07:55 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=atime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Apr 19 07:55 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=ctime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Apr 21 07:55 bashrc</span><br><span class="line">sh-4.2<span class="comment"># touch -t 1801011000 bashrc</span></span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Jan  1 10:00 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=ctime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Apr 21 07:57 bashrc</span><br><span class="line">sh-4.2<span class="comment"># ls -l bashrc --time=atime</span></span><br><span class="line">-rw-r--r-- 1 root root 176 Jan  1 10:00 bashrc</span><br></pre></td></tr></table></figure>
+<script type="text/javascript" src="https://asciinema.org/a/EK9paXYyASszuUBvO9OOpzIfa.js" id="asciicast-EK9paXYyASszuUBvO9OOpzIfa" async></script>
+<h2 id="cat-concatenate-浏览文件"><a href="#cat-concatenate-浏览文件" class="headerlink" title="cat - concatenate 浏览文件"></a>cat - concatenate 浏览文件</h2><h3 id="Usage：-1"><a href="#Usage：-1" class="headerlink" title="Usage："></a>Usage：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Usage: cat [OPTION]... [FILE]...</span><br><span class="line">Concatenate FILE(s), or standard input, to standard output.</span><br><span class="line"></span><br><span class="line">  -A, --show-all           equivalent to -vET</span><br><span class="line">  -b, --number-nonblank    number nonempty output lines, overrides -n</span><br><span class="line">  -e                       equivalent to -vE</span><br><span class="line">  -E, --show-ends          display $ at end of each line</span><br><span class="line">  -n, --number             number all output lines</span><br><span class="line">  -s, --squeeze-blank      suppress repeated empty output lines</span><br><span class="line">  -t                       equivalent to -vT</span><br><span class="line">  -T, --show-tabs          display TAB characters as ^I</span><br><span class="line">  -u                       (ignored)</span><br><span class="line">  -v, --show-nonprinting   use ^ and M- notation, except <span class="keyword">for</span> LFD and TAB</span><br><span class="line">      --<span class="built_in">help</span>     display this <span class="built_in">help</span> and <span class="built_in">exit</span></span><br><span class="line">      --version  output version information and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">With no FILE, or when FILE is -, <span class="built_in">read</span> standard input.</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">  cat f - g  Output f<span class="string">'s contents, then standard input, then g'</span>s contents.</span><br><span class="line">  cat        Copy standard input to standard output.</span><br></pre></td></tr></table></figure>
+<h3 id="常用选项：-1"><a href="#常用选项：-1" class="headerlink" title="常用选项："></a>常用选项：</h3><p>-A（All）：显示所有，包括特殊字符，等价于-vET</p>
+<p>-v（verbose）：列出看不出来的特殊字符</p>
+<p>-T（Tab）：将 Tab 按键以^I 显示出来</p>
+<p>-b（blank）：列出行号，空白行不标号</p>
+<p>-n（number）：列出行号，空白行也有</p>
+<p>-E（End）：将结尾的断行字符$显示出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">sh-4.2<span class="comment"># cat /etc/issue</span></span><br><span class="line">\S</span><br><span class="line">Kernel \r on an \m</span><br><span class="line"></span><br><span class="line">sh-4.2<span class="comment"># cat -n /etc/issue</span></span><br><span class="line">     1	\S</span><br><span class="line">     2	Kernel \r on an \m</span><br><span class="line">     3</span><br><span class="line">sh-4.2<span class="comment"># cat -b /etc/issue</span></span><br><span class="line">     1	\S</span><br><span class="line">     2	Kernel \r on an \m</span><br><span class="line"></span><br><span class="line">sh-4.2<span class="comment"># cd /tmp</span></span><br><span class="line">sh-4.2<span class="comment"># ls</span></span><br><span class="line">bashrc		  mvtest2    testtouch		     yum.log</span><br><span class="line">ks-script-hE5IPf  test.conf  tmpk3saal44-ascii.cast</span><br><span class="line">sh-4.2<span class="comment"># cat -A test.conf</span></span><br><span class="line">^Ihello$</span><br><span class="line">this is a <span class="built_in">test</span> file only...$</span><br><span class="line">sh-4.2<span class="comment"># cat -An test.conf</span></span><br><span class="line">     1	^Ihello$</span><br><span class="line">     2	this is a <span class="built_in">test</span> file only...$</span><br></pre></td></tr></table></figure>
+<script type="text/javascript" src="https://asciinema.org/a/JqE1p5EPWbGntVdOAXNfnoY1O.js" id="asciicast-JqE1p5EPWbGntVdOAXNfnoY1O" async></script>
+<h2 id="tac-反向-cat"><a href="#tac-反向-cat" class="headerlink" title="tac - 反向 cat"></a>tac - 反向 cat</h2><h3 id="Usage：-2"><a href="#Usage：-2" class="headerlink" title="Usage："></a>Usage：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Usage: tac [OPTION]... [FILE]...</span><br><span class="line">Write each FILE to standard output, last line first.</span><br><span class="line">With no FILE, or when FILE is -, <span class="built_in">read</span> standard input.</span><br><span class="line"></span><br><span class="line">Mandatory arguments to long options are mandatory <span class="keyword">for</span> short options too.</span><br><span class="line">  -b, --before             attach the separator before instead of after</span><br><span class="line">  -r, --regex              interpret the separator as a regular expression</span><br><span class="line">  -s, --separator=STRING   use STRING as the separator instead of newline</span><br><span class="line">      --<span class="built_in">help</span>     display this <span class="built_in">help</span> and <span class="built_in">exit</span></span><br><span class="line">      --version  output version information and <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<p>tac 没有 -n 选项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># tac /etc/issue</span></span><br><span class="line"></span><br><span class="line">Kernel \r on an \m</span><br><span class="line">\S</span><br></pre></td></tr></table></figure>
+<h2 id="nl-添加行号显示文件"><a href="#nl-添加行号显示文件" class="headerlink" title="nl - 添加行号显示文件"></a>nl - 添加行号显示文件</h2><h3 id="Usage：-3"><a href="#Usage：-3" class="headerlink" title="Usage："></a>Usage：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Usage: nl [OPTION]... [FILE]...</span><br><span class="line">Write each FILE to standard output, with line numbers added.</span><br><span class="line">With no FILE, or when FILE is -, <span class="built_in">read</span> standard input.</span><br><span class="line"></span><br><span class="line">Mandatory arguments to long options are mandatory <span class="keyword">for</span> short options too.</span><br><span class="line">  -b, --body-numbering=STYLE      use STYLE <span class="keyword">for</span> numbering body lines</span><br><span class="line">  -d, --section-delimiter=CC      use CC <span class="keyword">for</span> separating logical pages</span><br><span class="line">  -f, --footer-numbering=STYLE    use STYLE <span class="keyword">for</span> numbering footer lines</span><br><span class="line">  -h, --header-numbering=STYLE    use STYLE <span class="keyword">for</span> numbering header lines</span><br><span class="line">  -i, --line-increment=NUMBER     line number increment at each line</span><br><span class="line">  -l, --join-blank-lines=NUMBER   group of NUMBER empty lines counted as one</span><br><span class="line">  -n, --number-format=FORMAT      insert line numbers according to FORMAT</span><br><span class="line">  -p, --no-renumber               <span class="keyword">do</span> not reset line numbers at logical pages</span><br><span class="line">  -s, --number-separator=STRING   add STRING after (possible) line number</span><br><span class="line">  -v, --starting-line-number=NUMBER  first line number on each logical page</span><br><span class="line">  -w, --number-width=NUMBER       use NUMBER columns <span class="keyword">for</span> line numbers</span><br><span class="line">      --<span class="built_in">help</span>     display this <span class="built_in">help</span> and <span class="built_in">exit</span></span><br><span class="line">      --version  output version information and <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">By default, selects -v1 -i1 -l1 -sTAB -w6 -nrn -hn -bt -fn.  CC are</span><br><span class="line">two delimiter characters <span class="keyword">for</span> separating logical pages, a missing</span><br><span class="line">second character implies :.  Type \\ <span class="keyword">for</span> \.  STYLE is one of:</span><br><span class="line"></span><br><span class="line">  a         number all lines</span><br><span class="line">  t         number only nonempty lines</span><br><span class="line">  n         number no lines</span><br><span class="line">  pBRE      number only lines that contain a match <span class="keyword">for</span> the basic regular</span><br><span class="line">            expression, BRE</span><br><span class="line"></span><br><span class="line">FORMAT is one of:</span><br><span class="line"></span><br><span class="line">  ln   left justified, no leading zeros</span><br><span class="line">  rn   right justified, no leading zeros</span><br><span class="line">  rz   right justified, leading zeros</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue</span></span><br><span class="line">     1	\S</span><br><span class="line">     2	Kernel \r on an \m</span><br><span class="line"></span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a</span></span><br><span class="line">     1	\S</span><br><span class="line">     2	Kernel \r on an \m</span><br><span class="line">     3</span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a -n rz</span></span><br><span class="line">000001	\S</span><br><span class="line">000002	Kernel \r on an \m</span><br><span class="line">000003</span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a -n ln</span></span><br><span class="line">1     	\S</span><br><span class="line">2     	Kernel \r on an \m</span><br><span class="line">3</span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a -n rn</span></span><br><span class="line">     1	\S</span><br><span class="line">     2	Kernel \r on an \m</span><br><span class="line">     3</span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a -n rn -w 3</span></span><br><span class="line">  1	\S</span><br><span class="line">  2	Kernel \r on an \m</span><br><span class="line">  3</span><br><span class="line">[root@78063f0fe2e8 ~]<span class="comment"># nl /etc/issue -b a -n rz -w 3</span></span><br><span class="line">001	\S</span><br><span class="line">002	Kernel \r on an \m</span><br><span class="line">003</span><br></pre></td></tr></table></figure>
+<h2 id="more-一页一页显示文件内容"><a href="#more-一页一页显示文件内容" class="headerlink" title="more - 一页一页显示文件内容"></a>more - 一页一页显示文件内容</h2><h3 id="Usage：-4"><a href="#Usage：-4" class="headerlink" title="Usage："></a>Usage：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">more: unknown option -<span class="built_in">help</span></span><br><span class="line">Usage: more [options] file...</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -d        display <span class="built_in">help</span> instead of ring bell</span><br><span class="line">  -f        count logical, rather than screen lines</span><br><span class="line">  -l        suppress pause after form feed</span><br><span class="line">  -p        <span class="keyword">do</span> not scroll, clean screen and display text</span><br><span class="line">  -c        <span class="keyword">do</span> not scroll, display text and clean line ends</span><br><span class="line">  -u        suppress underlining</span><br><span class="line">  -s        squeeze multiple blank lines into one</span><br><span class="line">  -NUM      specify the number of lines per screenful</span><br><span class="line">  +NUM      display file beginning from line number NUM</span><br><span class="line">  +/STRING  display file beginning from search string match</span><br><span class="line">  -V        output version information and <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<p>空格：向下翻一页</p>
+<p>Enter：向下一行</p>
+<p>/字符串：向下查询字符串</p>
+<p>q：退出查看</p>
+<p>b：往回翻页</p>
+<h2 id="less-more-的进阶"><a href="#less-more-的进阶" class="headerlink" title="less - more 的进阶"></a>less - more 的进阶</h2><p>略</p>
+
+      
+      
+  <div class="article-statement">
+    <hr>  
+    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
+    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+  </div>
+
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="https://mooncaker816.github.io/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/" data-id="cjg9540hj000evww5q79r605u" class="article-share-link" data-share="baidu" data-title="Linux Centos 命令之 touch,cat,tac,more,less">分享到</a>
+      
+
+      
+      
+        <a href="/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/#comments" class="article-comment-link">
+          <span class="post-comments-count valine-comment-count" data-xid="/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/" itemprop="commentCount"></span>
+          文章评论
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos/">Centos</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/21/Linux Centos 命令之 cp,rm,mv/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Linux Centos 命令之 cp,rm,mv</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+  <section id="comments" class="vcomment">
+  </section>
+
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bytes/">Bytes</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-BitMap/">Go BitMap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Func/">Go Func</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-In-Action/">Go In Action</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Interface/">Go Interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-JSON/">Go JSON</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Method/">Go Method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-Scanner/">Go Scanner</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-TCP-Conn/">Go TCP Conn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-array/">Go array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-breadth-first-crawler/">Go breadth first crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-cache-store/">Go cache store</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-chat-room/">Go chat room</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-crawler/">Go crawler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-goroutine/">Go goroutine</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-interface/">Go interface</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-map/">Go map</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-method/">Go method</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-package/">Go package</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-select/">Go select</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-slice/">Go slice</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-template/">Go template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-type/">Go type</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go-标准库/">Go 标准库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Strings/">Strings</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/The-Go-Programming-Language-Ex/">The Go Programming Language Ex</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bytes/" style="font-size: 10px;">Bytes</a> <a href="/tags/Centos/" style="font-size: 17.5px;">Centos</a> <a href="/tags/Go-BitMap/" style="font-size: 10px;">Go BitMap</a> <a href="/tags/Go-Func/" style="font-size: 10px;">Go Func</a> <a href="/tags/Go-In-Action/" style="font-size: 17.5px;">Go In Action</a> <a href="/tags/Go-Interface/" style="font-size: 10px;">Go Interface</a> <a href="/tags/Go-JSON/" style="font-size: 10px;">Go JSON</a> <a href="/tags/Go-Method/" style="font-size: 10px;">Go Method</a> <a href="/tags/Go-Scanner/" style="font-size: 10px;">Go Scanner</a> <a href="/tags/Go-TCP-Conn/" style="font-size: 10px;">Go TCP Conn</a> <a href="/tags/Go-array/" style="font-size: 10px;">Go array</a> <a href="/tags/Go-breadth-first-crawler/" style="font-size: 10px;">Go breadth first crawler</a> <a href="/tags/Go-cache-store/" style="font-size: 10px;">Go cache store</a> <a href="/tags/Go-chat-room/" style="font-size: 10px;">Go chat room</a> <a href="/tags/Go-crawler/" style="font-size: 10px;">Go crawler</a> <a href="/tags/Go-goroutine/" style="font-size: 15px;">Go goroutine</a> <a href="/tags/Go-interface/" style="font-size: 10px;">Go interface</a> <a href="/tags/Go-map/" style="font-size: 12.5px;">Go map</a> <a href="/tags/Go-method/" style="font-size: 10px;">Go method</a> <a href="/tags/Go-package/" style="font-size: 10px;">Go package</a> <a href="/tags/Go-select/" style="font-size: 10px;">Go select</a> <a href="/tags/Go-slice/" style="font-size: 12.5px;">Go slice</a> <a href="/tags/Go-template/" style="font-size: 10px;">Go template</a> <a href="/tags/Go-type/" style="font-size: 10px;">Go type</a> <a href="/tags/Go-标准库/" style="font-size: 10px;">Go 标准库</a> <a href="/tags/Strings/" style="font-size: 10px;">Strings</a> <a href="/tags/The-Go-Programming-Language-Ex/" style="font-size: 20px;">The Go Programming Language Ex</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/21/Linux Centos 命令之 touch,cat,tac,more,less/">Linux Centos 命令之 touch,cat,tac,more,less</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/21/Linux Centos 命令之 cp,rm,mv/">Linux Centos 命令之 cp,rm,mv</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/21/Linux Centos 命令之 mkdir,rmdir,pwd,cd/">Linux Centos 命令之 mkdir,rmdir,pwd,cd</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/21/Linux Centos 命令之 ls/">Linux Centos 命令之 ls</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/14/strings & bytes/">Go 标准库学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="https://github.com/mooncaker816" target="_blank">我的github</a>
+          </li>
+        
+          <li>
+            <a href="https://coding.net/u/mooncaker816" target="_blank">我的coding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Mingle<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a><br/>
+      <span id="busuanzi_container_site_pv">
+        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
+      </span>
+      <span id="busuanzi_container_site_uv">
+        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
+      </span>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick','mail','link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    new Valine({
+        el: '.vcomment',
+        notify: notify,
+        verify: verify,
+        appId: "urzxMG6IH6XwD3AIW0VH4lMb-gzGzoHsz",
+        appKey: "WPbRVjy6oFOvnxYJJx9uTRR9",
+        placeholder: "来侃一侃~",
+        pageSize:'10',
+        avatar:'identicon',
+        lang:'zh-cn'
+    });
+</script>
+
+
+</div>
+</body>
+</html>
